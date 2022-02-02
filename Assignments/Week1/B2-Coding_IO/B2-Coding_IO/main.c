@@ -22,7 +22,7 @@ void wait( int ms )
 
 int main(void)
 {
-	DDRD = 0b01100000;
+	DDRD = 0b11000000;
 	
     while(1)
     {
