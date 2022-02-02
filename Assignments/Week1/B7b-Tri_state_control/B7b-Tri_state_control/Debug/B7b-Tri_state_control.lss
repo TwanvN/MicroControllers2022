@@ -1,0 +1,231 @@
+
+B7b-Tri_state_control.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  0000014e  000001c2  2**0
+                  ALLOC, LOAD, DATA
+  1 .text         000000ec  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      0000002f  00000000  00000000  000001c2  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000030  00000000  00000000  000001f1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000c05  00000000  00000000  00000221  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 00000875  00000000  00000000  00000e26  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000002b7  00000000  00000000  0000169b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000044  00000000  00000000  00001954  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000027d  00000000  00000000  00001998  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    000000c6  00000000  00000000  00001c15  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000020  00000000  00000000  00001cdb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .text         00000004  0000013e  0000013e  000001b2  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001cfc  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .text.wait    0000001e  000000ec  000000ec  00000160  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 14 .text.setCharliePlexingLed 00000016  00000128  00000128  0000019c  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 15 .text.main    0000001e  0000010a  0000010a  0000017e  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 16 .data.charliePlexArray 0000000c  00800100  00000142  000001b6  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 4a 00 	jmp	0x94	; 0x94 <__ctors_end>
+   4:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+   8:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+   c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  10:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  14:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  18:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  1c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  20:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  24:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  28:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  2c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  30:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  34:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  38:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  3c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  40:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  44:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  48:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  4c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  50:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  54:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  58:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  5c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  60:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  64:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  68:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  6c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  70:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  74:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  78:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  7c:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  80:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  84:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+  88:	0c 94 9f 00 	jmp	0x13e	; 0x13e <__bad_interrupt>
+
+0000008c <.dinit>:
+  8c:	01 00       	.word	0x0001	; ????
+  8e:	01 0c       	add	r0, r1
+  90:	00 01       	movw	r0, r0
+  92:	42 00       	.word	0x0042	; ????
+
+00000094 <__ctors_end>:
+  94:	11 24       	eor	r1, r1
+  96:	1f be       	out	0x3f, r1	; 63
+  98:	cf ef       	ldi	r28, 0xFF	; 255
+  9a:	d0 e1       	ldi	r29, 0x10	; 16
+  9c:	de bf       	out	0x3e, r29	; 62
+  9e:	cd bf       	out	0x3d, r28	; 61
+
+000000a0 <__do_copy_data>:
+  a0:	ec e8       	ldi	r30, 0x8C	; 140
+  a2:	f0 e0       	ldi	r31, 0x00	; 0
+  a4:	40 e0       	ldi	r20, 0x00	; 0
+  a6:	19 c0       	rjmp	.+50     	; 0xda <__do_clear_bss+0x8>
+  a8:	b7 91       	elpm	r27, Z+
+  aa:	a7 91       	elpm	r26, Z+
+  ac:	37 91       	elpm	r19, Z+
+  ae:	27 91       	elpm	r18, Z+
+  b0:	07 91       	elpm	r16, Z+
+  b2:	07 fd       	sbrc	r16, 7
+  b4:	0e c0       	rjmp	.+28     	; 0xd2 <__do_clear_bss>
+  b6:	97 91       	elpm	r25, Z+
+  b8:	87 91       	elpm	r24, Z+
+  ba:	ef 01       	movw	r28, r30
+  bc:	f9 2f       	mov	r31, r25
+  be:	e8 2f       	mov	r30, r24
+  c0:	0b bf       	out	0x3b, r16	; 59
+  c2:	07 90       	elpm	r0, Z+
+  c4:	0d 92       	st	X+, r0
+  c6:	a2 17       	cp	r26, r18
+  c8:	b3 07       	cpc	r27, r19
+  ca:	d9 f7       	brne	.-10     	; 0xc2 <__do_copy_data+0x22>
+  cc:	fe 01       	movw	r30, r28
+  ce:	1b be       	out	0x3b, r1	; 59
+  d0:	04 c0       	rjmp	.+8      	; 0xda <__do_clear_bss+0x8>
+
+000000d2 <__do_clear_bss>:
+  d2:	1d 92       	st	X+, r1
+  d4:	a2 17       	cp	r26, r18
+  d6:	b3 07       	cpc	r27, r19
+  d8:	e1 f7       	brne	.-8      	; 0xd2 <__do_clear_bss>
+  da:	e3 39       	cpi	r30, 0x93	; 147
+  dc:	f4 07       	cpc	r31, r20
+  de:	21 f7       	brne	.-56     	; 0xa8 <__do_copy_data+0x8>
+  e0:	0e 94 85 00 	call	0x10a	; 0x10a <main>
+  e4:	0c 94 74 00 	jmp	0xe8	; 0xe8 <_exit>
+
+000000e8 <_exit>:
+  e8:	f8 94       	cli
+
+000000ea <__stop_program>:
+  ea:	ff cf       	rjmp	.-2      	; 0xea <__stop_program>
+
+Disassembly of section .text:
+
+0000013e <__bad_interrupt>:
+ 13e:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
+
+Disassembly of section .text.wait:
+
+000000ec <wait>:
+	{0b00001010, 0b00001000},
+	{0b00001010, 0b00000010}
+};
+
+void wait( int ms ) {
+	for (int i=0; i<ms; i++) {
+  ec:	20 e0       	ldi	r18, 0x00	; 0
+  ee:	30 e0       	ldi	r19, 0x00	; 0
+  f0:	08 c0       	rjmp	.+16     	; 0x102 <wait+0x16>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  f2:	ef ec       	ldi	r30, 0xCF	; 207
+  f4:	f7 e0       	ldi	r31, 0x07	; 7
+  f6:	31 97       	sbiw	r30, 0x01	; 1
+  f8:	f1 f7       	brne	.-4      	; 0xf6 <wait+0xa>
+  fa:	00 c0       	rjmp	.+0      	; 0xfc <wait+0x10>
+  fc:	00 00       	nop
+  fe:	2f 5f       	subi	r18, 0xFF	; 255
+ 100:	3f 4f       	sbci	r19, 0xFF	; 255
+ 102:	28 17       	cp	r18, r24
+ 104:	39 07       	cpc	r19, r25
+ 106:	ac f3       	brlt	.-22     	; 0xf2 <wait+0x6>
+		_delay_ms( 1 );
+	}
+}
+ 108:	08 95       	ret
+
+Disassembly of section .text.setCharliePlexingLed:
+
+00000128 <setCharliePlexingLed>:
+	return 1;
+}
+
+void setCharliePlexingLed(int lednr) 
+{
+	lednr -= 1;
+ 128:	01 97       	sbiw	r24, 0x01	; 1
+	
+	PORTA = charliePlexArray[lednr].value;
+ 12a:	fc 01       	movw	r30, r24
+ 12c:	ee 0f       	add	r30, r30
+ 12e:	ff 1f       	adc	r31, r31
+ 130:	e0 50       	subi	r30, 0x00	; 0
+ 132:	ff 4f       	sbci	r31, 0xFF	; 255
+ 134:	81 81       	ldd	r24, Z+1	; 0x01
+ 136:	8b bb       	out	0x1b, r24	; 27
+	DDRA = charliePlexArray[lednr].triState;
+ 138:	80 81       	ld	r24, Z
+ 13a:	8a bb       	out	0x1a, r24	; 26
+ 13c:	08 95       	ret
+
+Disassembly of section .text.main:
+
+0000010a <main>:
+int main(void)
+{
+		
+    while(1)
+    {
+		for (int i = 1; i <= 6; i++)
+ 10a:	c1 e0       	ldi	r28, 0x01	; 1
+ 10c:	d0 e0       	ldi	r29, 0x00	; 0
+ 10e:	08 c0       	rjmp	.+16     	; 0x120 <main+0x16>
+		{
+			setCharliePlexingLed(i);
+ 110:	ce 01       	movw	r24, r28
+ 112:	0e 94 94 00 	call	0x128	; 0x128 <setCharliePlexingLed>
+			wait(500);
+ 116:	84 ef       	ldi	r24, 0xF4	; 244
+ 118:	91 e0       	ldi	r25, 0x01	; 1
+ 11a:	0e 94 76 00 	call	0xec	; 0xec <__data_load_end>
+int main(void)
+{
+		
+    while(1)
+    {
+		for (int i = 1; i <= 6; i++)
+ 11e:	21 96       	adiw	r28, 0x01	; 1
+ 120:	c7 30       	cpi	r28, 0x07	; 7
+ 122:	d1 05       	cpc	r29, r1
+ 124:	ac f3       	brlt	.-22     	; 0x110 <main+0x6>
+ 126:	f1 cf       	rjmp	.-30     	; 0x10a <main>
