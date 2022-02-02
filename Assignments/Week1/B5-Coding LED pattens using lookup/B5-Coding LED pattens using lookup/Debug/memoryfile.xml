@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project>                                  
+  <executable name="B5-Coding LED pattens using lookup.elf">                 
+    <memory name="program">              
+      <units>bytes</units>                 
+      <length>131072</length>                 
+      <used>542</used>                     
+      <free>130530</free>                     
+    </memory>                              
+    <memory name="data">                 
+      <units>bytes</units>                 
+      <length>4096</length>                 
+      <used>150</used>                     
+      <free>3946</free>                     
+    </memory>                              
+  </executable>                            
+</project>                                 
