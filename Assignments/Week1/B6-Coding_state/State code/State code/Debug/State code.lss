@@ -3,75 +3,75 @@ State code.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00800100  0000017c  2**0
+  0 .data         00000000  00800100  00800100  00000184  2**0
                   ALLOC, LOAD, DATA
   1 .text         000000a4  00000000  00000000  00000054  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      0000002f  00000000  00000000  0000017c  2**0
+  2 .comment      0000002f  00000000  00000000  00000184  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000030  00000000  00000000  000001ab  2**0
+  3 .debug_aranges 00000030  00000000  00000000  000001b3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000c44  00000000  00000000  000001db  2**0
+  4 .debug_info   00000c44  00000000  00000000  000001e3  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000888  00000000  00000000  00000e1f  2**0
+  5 .debug_abbrev 00000888  00000000  00000000  00000e27  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000030a  00000000  00000000  000016a7  2**0
+  6 .debug_line   00000316  00000000  00000000  000016af  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000044  00000000  00000000  000019b4  2**2
+  7 .debug_frame  00000044  00000000  00000000  000019c8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000028a  00000000  00000000  000019f8  2**0
+  8 .debug_str    0000028a  00000000  00000000  00001a0c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000175  00000000  00000000  00001c82  2**0
+  9 .debug_loc    00000175  00000000  00000000  00001c96  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000020  00000000  00000000  00001df7  2**0
+ 10 .debug_ranges 00000020  00000000  00000000  00001e0b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .text         00000004  00000124  00000124  00000178  2**1
+ 11 .text         00000004  0000012c  0000012c  00000180  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001e18  2**2
+ 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001e2c  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .text.loopCheck 0000003a  000000ea  000000ea  0000013e  2**1
+ 13 .text.loopCheck 0000003a  000000f2  000000f2  00000146  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 14 .text.main    00000046  000000a4  000000a4  000000f8  2**1
+ 14 .text.main    0000004e  000000a4  000000a4  000000f8  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 46 00 	jmp	0x8c	; 0x8c <__ctors_end>
-   4:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-   8:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-   c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  10:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  14:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  18:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  1c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  20:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  24:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  28:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  2c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  30:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  34:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  38:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  3c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  40:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  44:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  48:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  4c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  50:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  54:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  58:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  5c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  60:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  64:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  68:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  6c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  70:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  74:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  78:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  7c:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  80:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  84:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
-  88:	0c 94 92 00 	jmp	0x124	; 0x124 <__bad_interrupt>
+   4:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+   8:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+   c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  10:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  14:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  18:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  1c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  20:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  24:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  28:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  2c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  30:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  34:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  38:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  3c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  40:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  44:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  48:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  4c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  50:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  54:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  58:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  5c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  60:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  64:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  68:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  6c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  70:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  74:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  78:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  7c:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  80:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  84:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
+  88:	0c 94 96 00 	jmp	0x12c	; 0x12c <__bad_interrupt>
 
 0000008c <__ctors_end>:
   8c:	11 24       	eor	r1, r1
@@ -91,81 +91,81 @@ Disassembly of section .text:
 
 Disassembly of section .text:
 
-00000124 <__bad_interrupt>:
- 124:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
+0000012c <__bad_interrupt>:
+ 12c:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
 
 Disassembly of section .text.loopCheck:
 
-000000ea <loopCheck>:
+000000f2 <loopCheck>:
 	for (int i=0; i<ms; i++) {
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
 }
 
 enum state loopCheck(int ms, enum state currentState) {
-  ea:	ac 01       	movw	r20, r24
-  ec:	86 2f       	mov	r24, r22
+  f2:	ac 01       	movw	r20, r24
+  f4:	86 2f       	mov	r24, r22
 	for (int i=0; i<ms; i += 10) {
-  ee:	20 e0       	ldi	r18, 0x00	; 0
-  f0:	30 e0       	ldi	r19, 0x00	; 0
-  f2:	10 c0       	rjmp	.+32     	; 0x114 <loopCheck+0x2a>
+  f6:	20 e0       	ldi	r18, 0x00	; 0
+  f8:	30 e0       	ldi	r19, 0x00	; 0
+  fa:	10 c0       	rjmp	.+32     	; 0x11c <loopCheck+0x2a>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
-  f4:	ef e1       	ldi	r30, 0x1F	; 31
-  f6:	fe e4       	ldi	r31, 0x4E	; 78
-  f8:	31 97       	sbiw	r30, 0x01	; 1
-  fa:	f1 f7       	brne	.-4      	; 0xf8 <loopCheck+0xe>
-  fc:	00 c0       	rjmp	.+0      	; 0xfe <loopCheck+0x14>
-  fe:	00 00       	nop
+  fc:	ef e1       	ldi	r30, 0x1F	; 31
+  fe:	fe e4       	ldi	r31, 0x4E	; 78
+ 100:	31 97       	sbiw	r30, 0x01	; 1
+ 102:	f1 f7       	brne	.-4      	; 0x100 <loopCheck+0xe>
+ 104:	00 c0       	rjmp	.+0      	; 0x106 <loopCheck+0x14>
+ 106:	00 00       	nop
 		_delay_ms( 10 );
 		
 		if (PINC == 0b00000001)
- 100:	93 b3       	in	r25, 0x13	; 19
- 102:	91 30       	cpi	r25, 0x01	; 1
- 104:	29 f4       	brne	.+10     	; 0x110 <loopCheck+0x26>
+ 108:	93 b3       	in	r25, 0x13	; 19
+ 10a:	91 30       	cpi	r25, 0x01	; 1
+ 10c:	29 f4       	brne	.+10     	; 0x118 <loopCheck+0x26>
 		{
 			if (currentState == fast){
- 106:	81 30       	cpi	r24, 0x01	; 1
- 108:	49 f0       	breq	.+18     	; 0x11c <loopCheck+0x32>
+ 10e:	81 30       	cpi	r24, 0x01	; 1
+ 110:	49 f0       	breq	.+18     	; 0x124 <loopCheck+0x32>
 				currentState = slow;
 			} else if (currentState == slow){
- 10a:	88 23       	and	r24, r24
- 10c:	49 f0       	breq	.+18     	; 0x120 <loopCheck+0x36>
- 10e:	08 95       	ret
+ 112:	88 23       	and	r24, r24
+ 114:	49 f0       	breq	.+18     	; 0x128 <loopCheck+0x36>
+ 116:	08 95       	ret
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
 }
 
 enum state loopCheck(int ms, enum state currentState) {
 	for (int i=0; i<ms; i += 10) {
- 110:	26 5f       	subi	r18, 0xF6	; 246
- 112:	3f 4f       	sbci	r19, 0xFF	; 255
- 114:	24 17       	cp	r18, r20
- 116:	35 07       	cpc	r19, r21
- 118:	6c f3       	brlt	.-38     	; 0xf4 <loopCheck+0xa>
- 11a:	08 95       	ret
+ 118:	26 5f       	subi	r18, 0xF6	; 246
+ 11a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 11c:	24 17       	cp	r18, r20
+ 11e:	35 07       	cpc	r19, r21
+ 120:	6c f3       	brlt	.-38     	; 0xfc <loopCheck+0xa>
+ 122:	08 95       	ret
 		_delay_ms( 10 );
 		
 		if (PINC == 0b00000001)
 		{
 			if (currentState == fast){
 				currentState = slow;
- 11c:	80 e0       	ldi	r24, 0x00	; 0
- 11e:	08 95       	ret
+ 124:	80 e0       	ldi	r24, 0x00	; 0
+ 126:	08 95       	ret
 			} else if (currentState == slow){
 				currentState = fast;
- 120:	81 e0       	ldi	r24, 0x01	; 1
+ 128:	81 e0       	ldi	r24, 0x01	; 1
 			return currentState;
 		}
 	}
 	
 	return currentState;
 }
- 122:	08 95       	ret
+ 12a:	08 95       	ret
 
 Disassembly of section .text.main:
 
@@ -180,30 +180,34 @@ void wait(int ms) {
   a6:	81 bb       	out	0x11, r24	; 17
   a8:	80 e0       	ldi	r24, 0x00	; 0
   aa:	81 11       	cpse	r24, r1
-  ac:	0e c0       	rjmp	.+28     	; 0xca <main+0x26>
+  ac:	10 c0       	rjmp	.+32     	; 0xce <main+0x2a>
   ae:	90 e8       	ldi	r25, 0x80	; 128
   b0:	92 bb       	out	0x12, r25	; 18
   b2:	68 2f       	mov	r22, r24
   b4:	88 ee       	ldi	r24, 0xE8	; 232
   b6:	93 e0       	ldi	r25, 0x03	; 3
-  b8:	0e 94 75 00 	call	0xea	; 0xea <loopCheck>
-  bc:	12 ba       	out	0x12, r1	; 18
-  be:	68 2f       	mov	r22, r24
-  c0:	88 ee       	ldi	r24, 0xE8	; 232
-  c2:	93 e0       	ldi	r25, 0x03	; 3
-  c4:	0e 94 75 00 	call	0xea	; 0xea <loopCheck>
-  c8:	f0 cf       	rjmp	.-32     	; 0xaa <main+0x6>
-  ca:	81 30       	cpi	r24, 0x01	; 1
-  cc:	71 f7       	brne	.-36     	; 0xaa <main+0x6>
-  ce:	90 e8       	ldi	r25, 0x80	; 128
-  d0:	92 bb       	out	0x12, r25	; 18
-  d2:	68 2f       	mov	r22, r24
-  d4:	8a ef       	ldi	r24, 0xFA	; 250
-  d6:	90 e0       	ldi	r25, 0x00	; 0
-  d8:	0e 94 75 00 	call	0xea	; 0xea <loopCheck>
-  dc:	12 ba       	out	0x12, r1	; 18
-  de:	68 2f       	mov	r22, r24
-  e0:	8a ef       	ldi	r24, 0xFA	; 250
-  e2:	90 e0       	ldi	r25, 0x00	; 0
-  e4:	0e 94 75 00 	call	0xea	; 0xea <loopCheck>
-  e8:	e0 cf       	rjmp	.-64     	; 0xaa <main+0x6>
+  b8:	0e 94 79 00 	call	0xf2	; 0xf2 <loopCheck>
+  bc:	81 11       	cpse	r24, r1
+  be:	f5 cf       	rjmp	.-22     	; 0xaa <main+0x6>
+  c0:	12 ba       	out	0x12, r1	; 18
+  c2:	68 2f       	mov	r22, r24
+  c4:	88 ee       	ldi	r24, 0xE8	; 232
+  c6:	93 e0       	ldi	r25, 0x03	; 3
+  c8:	0e 94 79 00 	call	0xf2	; 0xf2 <loopCheck>
+  cc:	ee cf       	rjmp	.-36     	; 0xaa <main+0x6>
+  ce:	81 30       	cpi	r24, 0x01	; 1
+  d0:	61 f7       	brne	.-40     	; 0xaa <main+0x6>
+  d2:	90 e8       	ldi	r25, 0x80	; 128
+  d4:	92 bb       	out	0x12, r25	; 18
+  d6:	68 2f       	mov	r22, r24
+  d8:	8a ef       	ldi	r24, 0xFA	; 250
+  da:	90 e0       	ldi	r25, 0x00	; 0
+  dc:	0e 94 79 00 	call	0xf2	; 0xf2 <loopCheck>
+  e0:	81 30       	cpi	r24, 0x01	; 1
+  e2:	19 f7       	brne	.-58     	; 0xaa <main+0x6>
+  e4:	12 ba       	out	0x12, r1	; 18
+  e6:	68 2f       	mov	r22, r24
+  e8:	8a ef       	ldi	r24, 0xFA	; 250
+  ea:	90 e0       	ldi	r25, 0x00	; 0
+  ec:	0e 94 79 00 	call	0xf2	; 0xf2 <loopCheck>
+  f0:	dc cf       	rjmp	.-72     	; 0xaa <main+0x6>

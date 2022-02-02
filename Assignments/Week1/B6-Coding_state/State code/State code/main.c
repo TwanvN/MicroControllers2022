@@ -50,11 +50,19 @@ int main(void)
 		{
 			PORTD = 0b10000000;
 			currentState = loopCheck(1000, currentState);
+			if (currentState != slow)
+			{
+				continue;
+			}
 			PORTD = 0b00000000;
 			currentState = loopCheck(1000, currentState);
 		} else if (currentState == fast) {
 			PORTD = 0b10000000;
 			currentState = loopCheck(250, currentState);
+			if (currentState != fast)
+			{
+				continue;
+			}
 			PORTD = 0b00000000;
 			currentState = loopCheck(250, currentState);
 		}
