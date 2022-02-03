@@ -1,28 +1,47 @@
 /*
  * main.c
  *
- * Created: 2/2/2022 12:31:21 PM
- *  Author: Jesse
+ * Project created for the A assignment of week 1 micro controllers.
+ * Code will create an animation on the 4 rows of pins. The animation can be given in an array
+ *
+ * Created: 2/2/2022 10:33:08 AM
+ * Author: Jesse Krijgsman & Twan van Noorloos
  */ 
 
+// Defining the CPU speed to make the _delay_ms function work
 #define F_CPU 8e6
 #define ROWSIZE 4
 
+
+#include <xc.h>
 #include <avr/io.h>
 #include <util/delay.h>
 
+/*
+* Wait method was created by Etiënne Goossens and taken from the example projects given.
+* Given the amount of milliseconds to wait the method waits for that long.ss
+*/
 void wait( int ms )
 {
+	// Make the processor delay for 1 ms looped for the given ms
 	for (int i=0; i<ms; i++) {
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
 }
 
+/*
+* struct to define one set of instructions from the animation / pattern
+* - Value contains the bytes for each row on the matrix to display on. In the example this is 4*8
+* - Delay tells how long the instruction needs to be displayed
+*/
 typedef struct PatternInstruction {
 	unsigned char value[ROWSIZE];
 	unsigned int delay;
 } PATTERN_INSTRUCTION;
 
+/*
+* List of the pre-programmed animation
+*/
 #define INSTRUCTION_SIZE 25
 PATTERN_INSTRUCTION instructions[INSTRUCTION_SIZE] = { 
 	//  Instruction				  delay 
@@ -53,18 +72,24 @@ PATTERN_INSTRUCTION instructions[INSTRUCTION_SIZE] = {
 	{	{0x80, 0x00, 0x00, 0x00}, 500, }, // Light thirteenth diagonal
 };
 
+/*
+* Given one instruction this method sets all the lamps to that instruction
+*/
 void setLamps(PATTERN_INSTRUCTION instruction);
 
 int main(void)
 {
-	// Initializing all rows to output 0x11111111
+	// Initializing all rows to output 0b1111-1111
 	DDRA = 0xFF; DDRB = 0xFF; DDRC = 0xFF; DDRD = 0xFF;
 	
     while(1)
     {
+		// Going over all the instructions 
 		for (int i = 0; i < INSTRUCTION_SIZE; i++)
 		{
+			// Setting the lamps with the current instruction
 			setLamps(instructions[i]);
+			// Waiting for the specified delay from the current instruction
 			wait(instructions[i].delay);
 		}
     }
@@ -73,6 +98,7 @@ int main(void)
 }
 
 void setLamps(PATTERN_INSTRUCTION instruction) {
+	// Setting all the PORTS to the given instruction
 	PORTA = instruction.value[0];
 	PORTB = instruction.value[1];
 	PORTC = instruction.value[2];
