@@ -45,6 +45,9 @@ void wait( int ms )
 	}
 }
 
+/*
+* Given a number this method shows the number to the 7-segment display connected on port A
+*/
 void display(int digit){
 	// Checking if the entered value is in bounds, show the given digit
 	if (digit >= 0 && digit <= 15) PORTA = letterCodes[digit];
@@ -52,29 +55,31 @@ void display(int digit){
 	else PORTA = letterCodes[14];
 };
 
-void loopDigits() {
-	for (int i = 0; i < (sizeof(letterCodes) / sizeof(letterCodes[0])); i++)
-	{
-		display(i);
-		wait(1000);
-	}
-};
-
+/*
+* Main method to set up the 7-segment assignment
+*/
 int main(void)
 {
+	// setting DDRA to output for 7-segment 
 	DDRA = 0xFF;
+	// Setting DRRC to input
+	DDRC = 0x00;
 	
+	// Setting the seven segment display to zero to start
 	int digit = 0;
-	
 	display(digit);
 	
+	// main loop
     while(1)
     {
-		
+		// If button C0 is pressed digit-up
+		// If C1 digit-down
+		// If both are pressed go back to zero
         if (PINC == 0b00000001)	digit++;
         else if (PINC == 0b00000010) digit--;
 		else if (PINC == 0b00000011) digit = 0;
 			
+		// refreshing the 7-segment display
 		display(digit);
 		
 		wait(250);
