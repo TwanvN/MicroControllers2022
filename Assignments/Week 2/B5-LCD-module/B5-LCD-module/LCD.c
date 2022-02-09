@@ -1,8 +1,9 @@
 /*
  * LCD.c
+ * Module create to control the LCD display on the controller
  *
  * Created: 9-2-2022 13:53:12
- *  Author: Jesse
+ *  Author: Jesse Krijgsman & Twan van Noorloos
  */ 
 #define F_CPU 8e6
 
@@ -17,13 +18,17 @@
 #define LCD_E 	6  // RA6 UNI-6
 #define LCD_RS	4  // RA4 UNI-6
 
+// Locks in a set position by setting E high and low
 void lcd_strobe_lcd_e(void) {
-	PORTA |= (1<<LCD_E);	// E high
-	_delay_ms(1);			// nodig
-	PORTA &= ~(1<<LCD_E);  	// E low
-	_delay_ms(1);			// nodig?
+	PORTA |= (1<<LCD_E);	// set E high
+	_delay_ms(1);			// Small delay to process
+	PORTA &= ~(1<<LCD_E);  	// set E low
+	_delay_ms(1);			// small delay to process
 }
 
+/*
+ * Sets the lcd display to the correct 4 pin mode.
+ */
 void init_4bits_mode(void) {
 	// PORTC output mode and all low (also E and RS pin)
 	DDRD = 0xFF;
@@ -55,6 +60,8 @@ void init_4bits_mode(void) {
 	lcd_strobe_lcd_e();
 }
 
+// Writes a command to the LCD display
+// This by setting RS high
 void lcd_write_char(unsigned char byte) {
 	// First nibble.
 	PORTC = byte;
@@ -67,6 +74,9 @@ void lcd_write_char(unsigned char byte) {
 	lcd_strobe_lcd_e();
 }
 
+
+// Writes a command to the LCD display
+// This by setting RS low
 void lcd_write_command(unsigned char byte) {
 	// First nibble.
 	PORTC = byte;
@@ -80,12 +90,14 @@ void lcd_write_command(unsigned char byte) {
 }
 
 void lcd_clear() {
-	lcd_write_command (0x01);						//Leeg display
-	_delay_ms(2);
-	lcd_write_command (0x80);
+	lcd_write_command (0x01); // 0x01 clear the entire display
+	_delay_ms(2);			  // small delay
+	lcd_write_command (0x80); // 0x80 moves the cursor to the start
 }
 
-
+/*
+* Sets the LCD display to the correct 4 pin mode. Also clears the display before starting
+*/
 void LCD_init() 
 {
 		// Setting DDRC to output, these are used in writing data to the LCD
@@ -102,13 +114,24 @@ void LCD_init()
 		lcd_clear();
 }
 
+/*
+* Given a string pointer (char array) this method will
+* print that text to the display of the LCD
+*/
 void LCD_display_text(char *str)
 {
+	// Going until the value in the string pointer is 0
 	while (*str) {
+		// Moving the string pointer by one up
 		lcd_write_char(*str++);
 	}
 }
 
+/*
+* Given a position the method move the cursor to that position.
+* 0 == first line
+* 40 == second line
+*/
 void LCD_set_cursor(int position)
 {
 	// Bit 8 should be 1 to change cursor

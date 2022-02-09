@@ -4,23 +4,21 @@
 #include "LCD.h"
 #include "delay.h"
 
+// Main method to test the display module
 int main() {
 	
+	// Starting up the LCD display
 	LCD_init();
 	
-	// test text
-	char string[] = "test 123 twan";
+	// Writing a test string to the first line
+	char string[] = "test 123 Twan";
 	LCD_display_text(string);
 	
+	// Moving the cursor to position 40 (line 2)
 	LCD_set_cursor(40);
 	
-	// test text
-	char string2[] = "jesse 123 test";
+	// Writing a test string to the second line
+	char string2[] = "Jesse 123 test";
 	LCD_display_text(string2);
 	
-	// Loop forever
-	while (1) {
-		PORTC ^= (1<<0);	// Toggle PORTD.7
-		delay_wait( 250 );
-	}
 }
