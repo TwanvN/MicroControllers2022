@@ -12,19 +12,19 @@
 
 /*
  * Interrupt method which changes the light on PORTC
- * Does this by bithhifting PORTC one to the left and checks
+ * Does this by bit-shifting PORTC one to the left and checks
  * if the value is at the end and sets PORTC to the first LED
  */
 ISR( INT1_vect ) {
 	PORTC <<= 1;
 	
-	if (PORTC == 0b00000000)
+	if (PORTC == 0x00)
 		PORTC = 0x01;
 }
 
 /*
  * Interrupt method which changes the light on PORTC
- * Does this by bitshifting PORTC one to the right and checks
+ * Does this by bit-shifting PORTC one to the right and checks
  * if the value is at the start and sets PORTC to the last LED
  */
 ISR( INT2_vect ) {
