@@ -1,41 +1,41 @@
 
-B3-7-Segment.elf:     file format elf32-avr
+B4-7Segment-Pattern.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000000  00800100  00000176  000001ea  2**0
+  0 .data         00000000  00800100  000001b5  00000229  2**0
                   ALLOC, LOAD, DATA
   1 .text         000000ec  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .comment      0000002f  00000000  00000000  000001ea  2**0
+  2 .comment      0000002f  00000000  00000000  00000229  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000038  00000000  00000000  00000219  2**0
+  3 .debug_aranges 00000030  00000000  00000000  00000258  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00000c4b  00000000  00000000  00000251  2**0
+  4 .debug_info   00000c2a  00000000  00000000  00000288  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000871  00000000  00000000  00000e9c  2**0
+  5 .debug_abbrev 00000862  00000000  00000000  00000eb2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   00000322  00000000  00000000  0000170d  2**0
+  6 .debug_line   000002bf  00000000  00000000  00001714  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000060  00000000  00000000  00001a30  2**2
+  7 .debug_frame  00000058  00000000  00000000  000019d4  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000027d  00000000  00000000  00001a90  2**0
+  8 .debug_str    0000027d  00000000  00000000  00001a2c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    0000012a  00000000  00000000  00001d0d  2**0
+  9 .debug_loc    000000db  00000000  00000000  00001ca9  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000028  00000000  00000000  00001e37  2**0
+ 10 .debug_ranges 00000038  00000000  00000000  00001d84  2**0
                   CONTENTS, READONLY, DEBUGGING
  11 .text         00000004  00000162  00000162  000001d6  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001e60  2**2
+ 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00001dbc  2**2
                   CONTENTS, READONLY, DEBUGGING
- 13 .text.wait    0000001e  0000012a  0000012a  0000019e  2**1
+ 13 .text.wait    0000001e  00000144  00000144  000001b8  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 14 .text.display 0000001a  00000148  00000148  000001bc  2**1
+ 14 .text.display 00000004  00000166  00000166  000001da  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 15 .text.main    0000003e  000000ec  000000ec  00000160  2**1
+ 15 .text.main    00000058  000000ec  000000ec  00000160  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 16 .data.letterCodes 00000010  00800100  00000166  000001da  2**0
+ 16 .data.instructions 0000004b  00800100  0000016a  000001de  2**0
                   CONTENTS, ALLOC, LOAD, DATA
 
 Disassembly of section .text:
@@ -79,9 +79,9 @@ Disassembly of section .text:
 
 0000008c <.dinit>:
   8c:	01 00       	.word	0x0001	; ????
-  8e:	01 10       	cpse	r0, r1
+  8e:	01 4b       	sbci	r16, 0xB1	; 177
   90:	00 01       	movw	r0, r0
-  92:	66 00       	.word	0x0066	; ????
+  92:	6a 00       	.word	0x006a	; ????
 
 00000094 <__ctors_end>:
   94:	11 24       	eor	r1, r1
@@ -142,117 +142,116 @@ Disassembly of section .text:
 
 Disassembly of section .text.wait:
 
-0000012a <wait>:
-* Given the amount of milliseconds to wait the method waits for that long.ss
-*/
+00000144 <wait>:
+};
+
 void wait( int ms )
 {
 	// Make the processor delay for 1 ms looped for the given ms
 	for (int i=0; i<ms; i++) {
- 12a:	20 e0       	ldi	r18, 0x00	; 0
- 12c:	30 e0       	ldi	r19, 0x00	; 0
- 12e:	08 c0       	rjmp	.+16     	; 0x140 <wait+0x16>
+ 144:	20 e0       	ldi	r18, 0x00	; 0
+ 146:	30 e0       	ldi	r19, 0x00	; 0
+ 148:	08 c0       	rjmp	.+16     	; 0x15a <wait+0x16>
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 130:	ef ec       	ldi	r30, 0xCF	; 207
- 132:	f7 e0       	ldi	r31, 0x07	; 7
- 134:	31 97       	sbiw	r30, 0x01	; 1
- 136:	f1 f7       	brne	.-4      	; 0x134 <wait+0xa>
- 138:	00 c0       	rjmp	.+0      	; 0x13a <wait+0x10>
- 13a:	00 00       	nop
- 13c:	2f 5f       	subi	r18, 0xFF	; 255
- 13e:	3f 4f       	sbci	r19, 0xFF	; 255
- 140:	28 17       	cp	r18, r24
- 142:	39 07       	cpc	r19, r25
- 144:	ac f3       	brlt	.-22     	; 0x130 <wait+0x6>
+ 14a:	ef ec       	ldi	r30, 0xCF	; 207
+ 14c:	f7 e0       	ldi	r31, 0x07	; 7
+ 14e:	31 97       	sbiw	r30, 0x01	; 1
+ 150:	f1 f7       	brne	.-4      	; 0x14e <wait+0xa>
+ 152:	00 c0       	rjmp	.+0      	; 0x154 <wait+0x10>
+ 154:	00 00       	nop
+ 156:	2f 5f       	subi	r18, 0xFF	; 255
+ 158:	3f 4f       	sbci	r19, 0xFF	; 255
+ 15a:	28 17       	cp	r18, r24
+ 15c:	39 07       	cpc	r19, r25
+ 15e:	ac f3       	brlt	.-22     	; 0x14a <wait+0x6>
 		_delay_ms( 1 );		// library function (max 30 ms at 8MHz)
 	}
 }
- 146:	08 95       	ret
+ 160:	08 95       	ret
 
 Disassembly of section .text.display:
 
-00000148 <display>:
+00000166 <display>:
 
-void display(int digit){
-	// Checking if the entered value is in bounds, show the given digit
-	if (digit >= 0 && digit <= 15) PORTA = letterCodes[digit];
- 148:	80 31       	cpi	r24, 0x10	; 16
- 14a:	91 05       	cpc	r25, r1
- 14c:	30 f4       	brcc	.+12     	; 0x15a <display+0x12>
- 14e:	fc 01       	movw	r30, r24
- 150:	e0 50       	subi	r30, 0x00	; 0
- 152:	ff 4f       	sbci	r31, 0xFF	; 255
- 154:	80 81       	ld	r24, Z
- 156:	8b bb       	out	0x1b, r24	; 27
- 158:	08 95       	ret
-	// show the 0 digit
-	else PORTA = letterCodes[14];
- 15a:	80 91 0e 01 	lds	r24, 0x010E	; 0x80010e <__DATA_REGION_ORIGIN__+0xe>
- 15e:	8b bb       	out	0x1b, r24	; 27
- 160:	08 95       	ret
+void display(PATTERN_INSTRUCTIONS instruction){
+	PORTA = instruction.value;
+ 166:	6b bb       	out	0x1b, r22	; 27
+ 168:	08 95       	ret
 
 Disassembly of section .text.main:
 
 000000ec <main>:
-	}
 };
 
 int main(void)
 {
+  ec:	0f 93       	push	r16
+  ee:	1f 93       	push	r17
+  f0:	cf 93       	push	r28
+  f2:	df 93       	push	r29
 	DDRA = 0xFF;
-  ec:	8f ef       	ldi	r24, 0xFF	; 255
-  ee:	8a bb       	out	0x1a, r24	; 26
+  f4:	8f ef       	ldi	r24, 0xFF	; 255
+  f6:	8a bb       	out	0x1a, r24	; 26
+    int index = 0;
 	
-	int digit = 0;
+    while( instructions[index].delay != 0 ) {
+  f8:	18 c0       	rjmp	.+48     	; 0x12a <main+0x3e>
+	    for (int i = 0; i < INSTRUCTION_SIZE; i++)
+	    {
+		    display(instructions[i]);
+  fa:	e8 01       	movw	r28, r16
+  fc:	cc 0f       	add	r28, r28
+  fe:	dd 1f       	adc	r29, r29
+ 100:	c0 0f       	add	r28, r16
+ 102:	d1 1f       	adc	r29, r17
+ 104:	c0 50       	subi	r28, 0x00	; 0
+ 106:	df 4f       	sbci	r29, 0xFF	; 255
+ 108:	68 81       	ld	r22, Y
+ 10a:	79 81       	ldd	r23, Y+1	; 0x01
+ 10c:	8a 81       	ldd	r24, Y+2	; 0x02
+ 10e:	0e 94 b3 00 	call	0x166	; 0x166 <display>
+		    wait(instructions[i].delay);
+ 112:	89 81       	ldd	r24, Y+1	; 0x01
+ 114:	9a 81       	ldd	r25, Y+2	; 0x02
+ 116:	0e 94 a2 00 	call	0x144	; 0x144 <wait>
+{
+	DDRA = 0xFF;
+    int index = 0;
 	
-	display(digit);
-  f0:	80 e0       	ldi	r24, 0x00	; 0
-  f2:	90 e0       	ldi	r25, 0x00	; 0
-  f4:	0e 94 a4 00 	call	0x148	; 0x148 <display>
-
+    while( instructions[index].delay != 0 ) {
+	    for (int i = 0; i < INSTRUCTION_SIZE; i++)
+ 11a:	0f 5f       	subi	r16, 0xFF	; 255
+ 11c:	1f 4f       	sbci	r17, 0xFF	; 255
+ 11e:	02 c0       	rjmp	.+4      	; 0x124 <main+0x38>
+ 120:	00 e0       	ldi	r16, 0x00	; 0
+ 122:	10 e0       	ldi	r17, 0x00	; 0
+ 124:	09 31       	cpi	r16, 0x19	; 25
+ 126:	11 05       	cpc	r17, r1
+ 128:	44 f3       	brlt	.-48     	; 0xfa <main+0xe>
 int main(void)
 {
 	DDRA = 0xFF;
+    int index = 0;
 	
-	int digit = 0;
-  f8:	c0 e0       	ldi	r28, 0x00	; 0
-  fa:	d0 e0       	ldi	r29, 0x00	; 0
-	display(digit);
-	
-    while(1)
-    {
-		
-        if (PINC == 0b00000001)	digit++;
-  fc:	83 b3       	in	r24, 0x13	; 19
-  fe:	81 30       	cpi	r24, 0x01	; 1
- 100:	11 f4       	brne	.+4      	; 0x106 <main+0x1a>
- 102:	21 96       	adiw	r28, 0x01	; 1
- 104:	0a c0       	rjmp	.+20     	; 0x11a <main+0x2e>
-        else if (PINC == 0b00000010) digit--;
- 106:	83 b3       	in	r24, 0x13	; 19
- 108:	82 30       	cpi	r24, 0x02	; 2
- 10a:	11 f4       	brne	.+4      	; 0x110 <main+0x24>
- 10c:	21 97       	sbiw	r28, 0x01	; 1
- 10e:	05 c0       	rjmp	.+10     	; 0x11a <main+0x2e>
-		else if (PINC == 0b00000011) digit = 0;
- 110:	83 b3       	in	r24, 0x13	; 19
- 112:	83 30       	cpi	r24, 0x03	; 3
- 114:	11 f4       	brne	.+4      	; 0x11a <main+0x2e>
- 116:	c0 e0       	ldi	r28, 0x00	; 0
- 118:	d0 e0       	ldi	r29, 0x00	; 0
-			
-		display(digit);
- 11a:	ce 01       	movw	r24, r28
- 11c:	0e 94 a4 00 	call	0x148	; 0x148 <display>
-		
-		wait(250);
- 120:	8a ef       	ldi	r24, 0xFA	; 250
- 122:	90 e0       	ldi	r25, 0x00	; 0
- 124:	0e 94 95 00 	call	0x12a	; 0x12a <wait>
+    while( instructions[index].delay != 0 ) {
+ 12a:	80 91 01 01 	lds	r24, 0x0101	; 0x800101 <__DATA_REGION_ORIGIN__+0x1>
+ 12e:	90 91 02 01 	lds	r25, 0x0102	; 0x800102 <__DATA_REGION_ORIGIN__+0x2>
+ 132:	89 2b       	or	r24, r25
+ 134:	a9 f7       	brne	.-22     	; 0x120 <main+0x34>
+	    {
+		    display(instructions[i]);
+		    wait(instructions[i].delay);
+	    }
     }
- 128:	e9 cf       	rjmp	.-46     	; 0xfc <main+0x10>
+ 136:	80 e0       	ldi	r24, 0x00	; 0
+ 138:	90 e0       	ldi	r25, 0x00	; 0
+ 13a:	df 91       	pop	r29
+ 13c:	cf 91       	pop	r28
+ 13e:	1f 91       	pop	r17
+ 140:	0f 91       	pop	r16
+ 142:	08 95       	ret
