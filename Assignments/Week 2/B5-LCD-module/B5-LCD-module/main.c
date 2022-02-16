@@ -1,11 +1,14 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/delay.h>
+
 #include "LCD.h"
-#include "delay.h"
 
 // Main method to test the display module
 int main() {
+	
+	_delay_ms(500);
 	
 	// Starting up the LCD display
 	LCD_init();

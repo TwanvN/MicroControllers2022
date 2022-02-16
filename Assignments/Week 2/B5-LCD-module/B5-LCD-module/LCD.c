@@ -5,7 +5,6 @@
  * Created: 9-2-2022 13:53:12
  * Author: Jesse Krijgsman & Twan van Noorloos
  */ 
-#define F_CPU 8e6
 
 // Including all the needed functions
 #include <avr/io.h>
@@ -25,14 +24,6 @@ void lcd_strobe_lcd_e(void) {
 	PORTA &= ~(1<<LCD_E);  	// set E low
 	_delay_ms(1);			// small delay to process
 }
-
-void LCD_toggle_E(void) {
-	PORTA |= 0x01000000;
-	_delay_ms(1);			
-	PORTA &= 0x10111111;  
-	_delay_ms(1);		
-}
-
 
 /*
  * Sets the lcd display to the correct 4 pin mode.
@@ -108,6 +99,7 @@ void lcd_clear() {
 */
 void LCD_init() 
 {
+
 		// Setting DDRC to output, these are used in writing data to the LCD
 		DDRC = 0xFF;			
 		PORTC = 0xFF;
