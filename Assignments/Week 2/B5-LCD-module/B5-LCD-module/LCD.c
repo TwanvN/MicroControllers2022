@@ -3,7 +3,7 @@
  * Module create to control the LCD display on the controller
  *
  * Created: 9-2-2022 13:53:12
- *  Author: Jesse Krijgsman & Twan van Noorloos
+ * Author: Jesse Krijgsman & Twan van Noorloos
  */ 
 #define F_CPU 8e6
 
@@ -25,6 +25,14 @@ void lcd_strobe_lcd_e(void) {
 	PORTA &= ~(1<<LCD_E);  	// set E low
 	_delay_ms(1);			// small delay to process
 }
+
+void LCD_toggle_E(void) {
+	PORTA |= 0x01000000;
+	_delay_ms(1);			
+	PORTA &= 0x10111111;  
+	_delay_ms(1);		
+}
+
 
 /*
  * Sets the lcd display to the correct 4 pin mode.
