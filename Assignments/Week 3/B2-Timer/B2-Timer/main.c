@@ -22,12 +22,12 @@ ISR( TIMER2_COMP_vect ) {
 	// Checking if D7 is high
 	if (OCR2 == TICKS_LOW)
 	{
-		PORTD ^= (1 << 7);
 		OCR2 = TICKS_HIGH;	// Set the delay to 25ms
 	} else {
-		PORTD ^= (1 << 7);
 		OCR2 = TICKS_LOW;	// Set the delay to 15ms
 	}
+	
+	PORTD ^= (1 << 7);
 }
 
 
