@@ -22,7 +22,7 @@ void wait( int ms )
 }
 
 void adcInit( void )
-{
+{	
 	ADMUX = 0b01100001;
 	
 	ADCSRA = 0b11100110;

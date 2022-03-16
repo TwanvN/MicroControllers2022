@@ -12,7 +12,7 @@
 
 void initTimer();
 
-#define TICKS_HIGH 195` // Tick time for 25ms with prescaler 1024
+#define TICKS_HIGH 195	// Tick time for 25ms with prescaler 1024
 #define TICKS_LOW 117	// Tick time for 15ms with prescaler 1024
 
 // Interrupt routine
