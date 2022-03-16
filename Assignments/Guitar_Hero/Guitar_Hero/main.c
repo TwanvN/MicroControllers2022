@@ -23,33 +23,34 @@
 
 int timerOverflow = 0;
 
-int timerRunning = 0;
+char ticksOnTrigger = 0;
 
-/************************************************************************/
-/* Interrupt called on TRIGGER_PIN going high and low                   */
-/* Starts the timer to check the pulse length							*/
-/************************************************************************/
 ISR ( INT7_vect )
 {
-	PORTD ^= 0x01;
-	//PORTD = TCNT1;
+	PORTD = TCNT2;
 	
-	// If timer is running: 
-	// Stop the timer and save the length of the pulse 
-	if (timerRunning == 1)
+	if(ticksOnTrigger == 0)
+		ticksOnTrigger = TCNT2;
+	else
 	{
+		unsigned char diff = TCNT2 - ticksOnTrigger;	// Getting the difference
 		
-	
+		//DDRD = diff;	// Setting DDRD to the value from the echo
+		
+		ticksOnTrigger = 0; // resetting ticksOnTrigger
 	}
-	
-		
+}
+
+ISR ( TIMER2_OVF_vect )
+{	
+	TCNT2 = 0; // Resetting timer
 }
 
 void initTimer();
 
 int main(void)
-{
-	_delay_ms(500);	
+{	
+	//_delay_ms(500);	
 	
 	//char string[10];
 	
@@ -65,35 +66,32 @@ int main(void)
 	
 	// Initing the LCD module
 	//LCD_init();
-		
 	
 	_delay_ms(1500);
 					
     while (1) {		
-		
 		PORTE |= (1 << TRIGGER_PIN);
 		
 		_delay_us(10);
 		
 		PORTE &= ~(1 << TRIGGER_PIN);
 		
-		/*
-		// Writing distance to LCD
+		/*// Writing distance to LCD
 		sprintf(string, "%d cm  ", timerOverflow);
 		LCD_set_cursor(0);
 		LCD_display_text(string);
 		*/
 		
-	    _delay_ms( 5000 );
+	    _delay_ms( 500 );
     }
 	
-		
 	return 1;
 }
 
 void initTimer()
 {
-	sei(); // turn_on intr all
-	TCCR1A = 0b00000000; // Initialize T1: timer, prescaler=256,
-	TCCR1B = 0b00001001; // compare output disconnected, CTC, RUN
+	TCNT2 = 0;
+	TIMSK |= 0b01000000;
+	TCCR2 = 0b00001100;
+	sei();
 }
