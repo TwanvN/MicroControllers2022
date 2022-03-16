@@ -52,24 +52,9 @@ int main(void)
 	DDRF = 0xFF;
 	DDRB = 0x00;
 	
-	playFirstSong();
+	TIMSK = 0b00011000;
 	
-	while (1)
-	{
-		if (PINB == 0b00000001)
-		{
-			PORTF = 0b00010000;
-		} else if (PINB == 0b00000010)
-		{
-			PORTF = 0b00000010;
-		} else if (PINB == 0b00000100)
-		{
-			PORTF = 0b00000100;
-		} else if (PINB == 0b00001000)
-		{
-			PORTF = 0b00001000;
-		}
-	}
+	playFirstSong();
 	
 	return 1;
 }

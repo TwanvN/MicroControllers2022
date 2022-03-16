@@ -25,9 +25,28 @@ SONG_PATTERN firstSong[10] = {
 };
 
 void playFirstSong() {
-	for (int i = 0; i < 4; i++)
-	{
-		PORTF = firstSong[i].lightSequence;
-		_delay_ms(1000);
-	}
+
+		int index = 0;
+
+		PORTF = firstSong[index].lightSequence;
+		
+		while(1) {
+
+			if (PINB == 0b00010000 && index == 0)
+			{
+				index++;
+				PORTF = firstSong[index].lightSequence;
+			} else if (PINB == 0b00000010 && index == 1)
+			{
+				index++;
+				PORTF = firstSong[index].lightSequence;
+			} else if (PINB == 0b00000100 && index == 2)
+			{
+				index++;
+				PORTF = firstSong[index].lightSequence;
+			} else if (PINB == 0b00001000 && index == 3)
+			{
+				break;
+			}
+		}
 }
