@@ -7,11 +7,10 @@
  */ 
 
 // Including all the needed functions
-#include "LCD.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-
+#include "LCD_Module.h"
 
 
 // Defining the ports the display is on
@@ -31,7 +30,6 @@ void lcd_strobe_lcd_e(void) {
  */
 void init_4bits_mode(void) {
 	// PORTC output mode and all low (also E and RS pin)
-	DDRD = 0xFF;
 	DDRA = 0xFF;
 	PORTC = 0x00;
 	PORTA = 0x00;
