@@ -5,8 +5,6 @@
  *  Author: Jesse
  */ 
 
-#define F_CPU 8e6
-
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -16,6 +14,7 @@
 #include <xc.h>
 
 #include "LCD_Module.h"
+#include "song_module.h"
 
 #define TRIGGER_PIN 0
 
@@ -50,42 +49,27 @@ void initTimer();
 
 int main(void)
 {
-	_delay_ms(500);	
+	DDRF = 0xFF;
+	DDRB = 0x00;
 	
-	//char string[10];
+	playFirstSong();
 	
-	// Init I/O
-	DDRD = 0xFF;			// Port D to output
-	DDRE = 0b00001111;		// PORTD(7:4) input, PORTD(3:0) output
-
-	// Init Interrupt hardware
-	EICRB |= 0x40;			// ISC7 Rising edge
-	EIMSK |= 0x80;			// Enable INT7
-	
-	sei();
-	
-	initTimer();
-	
-	// Initing the LCD module
-	//LCD_init();
-	
-	_delay_ms(1500);
-					
-    while (1) {		
-		PORTE |= (1 << TRIGGER_PIN);
-		
-		_delay_us(10);
-		
-		PORTE &= ~(1 << TRIGGER_PIN);
-		
-		/*// Writing distance to LCD
-		sprintf(string, "%d cm  ", timerOverflow);
-		LCD_set_cursor(0);
-		LCD_display_text(string);
-		*/
-		PORTD = timerOverflow;
-	    _delay_ms( 200 );
-    }
+	while (1)
+	{
+		if (PINB == 0b00000001)
+		{
+			PORTF = 0b00010000;
+		} else if (PINB == 0b00000010)
+		{
+			PORTF = 0b00000010;
+		} else if (PINB == 0b00000100)
+		{
+			PORTF = 0b00000100;
+		} else if (PINB == 0b00001000)
+		{
+			PORTF = 0b00001000;
+		}
+	}
 	
 	return 1;
 }
