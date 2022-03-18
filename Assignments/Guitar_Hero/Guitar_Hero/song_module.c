@@ -15,13 +15,15 @@
 typedef struct SongPattern {
 	int stepNumber;
 	char lightSequence;
+	int lightID;
 } SONG_PATTERN;
 
 SONG_PATTERN firstSong[10] = {
-	{1, 0b00010000},
-	{2, 0b00000010},
-	{3, 0b00000100},
-	{4, 0b00001000}	
+	{1, 0b00010000, 1},
+	{2, 0b00000010, 2},
+	{3, 0b00000100, 3},
+	{4, 0b00001000, 4},
+	{5, 0b00001000, 2}	
 };
 
 void playFirstSong() {
@@ -32,21 +34,25 @@ void playFirstSong() {
 		
 		while(1) {
 
-			if (PINB == 0b00010000 && index == 0)
+			if (PINB == 0b00010000 && firstSong[index].lightID == 1)
 			{
 				index++;
-				PORTF = firstSong[index].lightSequence;
-			} else if (PINB == 0b00000010 && index == 1)
+			} else if (PINB == 0b00000010 && firstSong[index].lightID == 2)
 			{
 				index++;
-				PORTF = firstSong[index].lightSequence;
-			} else if (PINB == 0b00000100 && index == 2)
+			} else if (PINB == 0b00000100 && firstSong[index].lightID == 3)
 			{
 				index++;
-				PORTF = firstSong[index].lightSequence;
-			} else if (PINB == 0b00001000 && index == 3)
+			} else if (PINB == 0b00001000 && firstSong[index].lightID == 4)
+			{
+				index++;
+			}
+			
+			if (index >= (sizeof(firstSong) / sizeof(firstSong[0])))
 			{
 				break;
+			} else {
+				PORTF = firstSong[index].lightSequence;
 			}
 		}
 }
