@@ -27,7 +27,8 @@ char ticksOnTrigger = 0;
 
 ISR ( INT7_vect )
 {
-	PORTD = TCNT2;
+	PORTA = TCNT2;
+	
 	
 	if(ticksOnTrigger == 0)
 		ticksOnTrigger = TCNT2;
@@ -35,7 +36,7 @@ ISR ( INT7_vect )
 	{
 		unsigned char diff = TCNT2 - ticksOnTrigger;	// Getting the difference
 		
-		//DDRD = diff;	// Setting DDRD to the value from the echo
+		PORTD = diff;	// Setting DDRD to the value from the echo
 		
 		ticksOnTrigger = 0; // resetting ticksOnTrigger
 	}
@@ -56,7 +57,8 @@ int main(void)
 	
 	// Init I/O
 	DDRD = 0xFF;			// Port D to output
-	DDRE = 0b00001111;		// PORTD(7:4) input, PORTD(3:0) output
+	DDRA = 0xFF;
+	DDRE = 0b00001111;		// PORTE(7:4) input, PORTE(3:0) output
 
 	// Init Interrupt hardware
 	EICRB |= 0x40;			// ISC7 Rising edge
