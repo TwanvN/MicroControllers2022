@@ -26,14 +26,19 @@ SONG_PATTERN firstSong[10] = {
 	{5, 0b00001000, 2}	
 };
 
+int currentLight = 0;
+
+void updateLight() {
+	currentLight++;
+}
+
 void playFirstSong() {
 
-		int index = 0;
-
-		PORTF = firstSong[index].lightSequence;
+		PORTF = firstSong[currentLight].lightSequence;
+		
 		
 		while(1) {
-
+			/*
 			if (PINB == 0b00010000 && firstSong[index].lightID == 1)
 			{
 				index++;
@@ -47,12 +52,15 @@ void playFirstSong() {
 			{
 				index++;
 			}
+			*/
 			
-			if (index >= (sizeof(firstSong) / sizeof(firstSong[0])))
+			PORTF = firstSong[currentLight].lightSequence;
+			
+			if (currentLight >= (sizeof(firstSong) / sizeof(firstSong[0])))
 			{
 				break;
 			} else {
-				PORTF = firstSong[index].lightSequence;
+				PORTF = firstSong[currentLight].lightSequence;
 			}
 		}
 }

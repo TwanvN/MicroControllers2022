@@ -6,3 +6,4 @@
  */ 
 
 void playFirstSong();
+void updateLight()
