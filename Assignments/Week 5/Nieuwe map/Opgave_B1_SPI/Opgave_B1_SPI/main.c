@@ -1,9 +1,3 @@
-/* spi Serial Peripheral Interface
- *	 7 segments display
- *  Master
- *	WvdE
- * 24 febr 2011
- */
 /*
  * Project name		: Demo5_5 : spi - 7 segments display
  * Author			: Avans-TI, WvdE, JW
@@ -16,6 +10,7 @@
      Ext. Modules:    Serial 7-seg display
      SW:              AVR-GCC
  * NOTES			: Turn ON switch 15, PB1/PB2/PB3 to MISO/MOSI/SCK
+ * Edited by		: Twan van Noorloos and Jesse Krijgsman 23/03/2022
 */
 
 #define F_CPU 8e6
@@ -130,7 +125,7 @@ int main()
 	// write 4-digit data  
  	for (char i =1; i<=4; i++)
   	{
-		spi_writeWord(5 - i, i);
+		spi_writeWord(5 - i, i); // 5-i makes the draw from left to right instead of right to left
 	
 		wait(1000);
   	}

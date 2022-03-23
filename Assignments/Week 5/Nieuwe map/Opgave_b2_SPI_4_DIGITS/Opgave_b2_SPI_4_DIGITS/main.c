@@ -82,10 +82,10 @@ void spi_slaveDeSelect(unsigned char chipNumber)
 }
 
 void spi_writeWord(unsigned char adress, unsigned char data) {
-	spi_slaveSelect(0);				// Select display chip
-	spi_write(adress); 				// Register 0B: Shutdown register
-	spi_write(data); 				// 	-> 1 = Normal operation
-	spi_slaveDeSelect(0);
+	spi_slaveSelect(0);				// Select slave ID
+	spi_write(adress); 				// Write the register to the display
+	spi_write(data); 				// Write the data to the display
+	spi_slaveDeSelect(0);			// Unselect slave ID
 }
 
 
