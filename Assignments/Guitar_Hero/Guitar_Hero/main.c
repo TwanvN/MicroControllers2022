@@ -19,30 +19,23 @@
 #define TRIGGER_PIN 0
 
 #define TICK_CM 58
+#define TICK_MS 250 
 
 int timerOverflow = 0;
+int seconds = 0;
 
 int timerRunning = 0;
 
-ISR ( INT7_vect )
+ISR ( TIMER0_COMP_vect )
 {
-	if (timerRunning == 0)
-	{
-		timerOverflow = 0; 
-		timerRunning = 1;
-	} 
-	else
-	{
-		timerRunning = 0;		
-	}
+	timerOverflow++;
 	
+	if (timerOverflow == 1000)
+	{
+		updateLight();
+		timerOverflow = 0;
+	}
 		
-}
-
-ISR ( TIMER2_COMP_vect )
-{
-	if (timerRunning)
-		timerOverflow++;
 }
 
 void initTimer();
@@ -52,7 +45,9 @@ int main(void)
 	DDRF = 0xFF;
 	DDRB = 0x00;
 	
-	TIMSK = 0b00011000;
+	TIMSK = 0b01000010;
+	
+	initTimer();
 	
 	playFirstSong();
 	
@@ -61,7 +56,8 @@ int main(void)
 
 void initTimer()
 {
-	OCR2 = TICK_CM;
+	OCR0 = TICK_MS;
 	TIMSK |= (1<<7);
-	TCCR2 = 0b00001001;	// 8 prescaler with compare on
+	TCCR0 = 0b00000011;
+	sei();
 }
