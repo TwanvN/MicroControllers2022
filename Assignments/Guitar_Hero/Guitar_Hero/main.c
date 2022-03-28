@@ -21,22 +21,20 @@
 
 #define TICK_CM 58
 
-int timerOverflow = 0;
+int currentDistance = 0;
 
 char ticksOnTrigger = 0;
 
 ISR ( INT7_vect )
-{
-	PORTA = TCNT2;
-	
-	
+{	
 	if(ticksOnTrigger == 0)
 		ticksOnTrigger = TCNT2;
 	else
 	{
 		unsigned char diff = TCNT2 - ticksOnTrigger;	// Getting the difference
 		
-		PORTD = diff;	// Setting DDRD to the value from the echo
+		currentDistance = ( diff * ( 32.0 / 58.0 ) );	// Setting DDRD to the value from the echo
+		PORTD = currentDistance;
 		
 		ticksOnTrigger = 0; // resetting ticksOnTrigger
 	}
@@ -51,13 +49,11 @@ void initTimer();
 
 int main(void)
 {	
-	//_delay_ms(500);	
-	
-	//char string[10];
+	_delay_ms(500);	
 	
 	// Init I/O
 	DDRD = 0xFF;			// Port D to output
-	DDRA = 0xFF;
+
 	DDRE = 0b00001111;		// PORTE(7:4) input, PORTE(3:0) output
 
 	// Init Interrupt hardware
@@ -67,7 +63,7 @@ int main(void)
 	initTimer();
 	
 	// Initing the LCD module
-	//LCD_init();
+	LCD_init();
 	
 	_delay_ms(1500);
 					
@@ -78,13 +74,15 @@ int main(void)
 		
 		PORTE &= ~(1 << TRIGGER_PIN);
 		
-		/*// Writing distance to LCD
-		sprintf(string, "%d cm  ", timerOverflow);
+		char string[13];
+		
+		// Writing distance to LCD
+		sprintf(string, "%d cm   ", currentDistance);
 		LCD_set_cursor(0);
 		LCD_display_text(string);
-		*/
 		
-	    _delay_ms( 500 );
+		
+	    _delay_ms( 1000 );
     }
 	
 	return 1;
