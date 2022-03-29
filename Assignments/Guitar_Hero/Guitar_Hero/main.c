@@ -4,6 +4,7 @@
  * Created: 3/10/2022 3:30:28 PM
  *  Author: Jesse
  */ 
+#define F_CPU 8e6
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -48,14 +49,24 @@ int main(void)
 	DDRB = 0x00;
 	DDRD = 0xFF;
 	
-	TIMSK |= 0b01000010;
-	
 	initTimer();
 	pwmInit();
 	UTS_Init();
 	
-	playFirstSong();
+	TIMSK = 0b01000010;
 	
+	while (1) {
+		
+		if(timerOverflow % 500 == 0)
+		{
+			UTS_Trigger();
+			PORTD = currentDistance;
+		}
+		
+		playFirstSong();
+		
+	}
+		
 	return 1;
 }
 
