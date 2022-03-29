@@ -31,7 +31,6 @@ int currentLight = 0;
 
 void updateLight() {
 	currentLight++;
-	OCR3B = firstSong[currentLight].pwmSignal;
 }
 
 void playFirstSong() {
@@ -40,21 +39,21 @@ void playFirstSong() {
 		
 		while(1) {
 			
-			/*
 			if (PINB == 0b00010000 && firstSong[currentLight].lightID == 1)
 			{
-				currentLight++;
+				OCR3B = firstSong[currentLight].pwmSignal;
 			} else if (PINB == 0b00000010 && firstSong[currentLight].lightID == 2)
 			{
-				currentLight++;
+				OCR3B = firstSong[currentLight].pwmSignal;
 			} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 3)
 			{
-				currentLight++;
+				OCR3B = firstSong[currentLight].pwmSignal;
 			} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 4)
 			{
-				currentLight++;
+				OCR3B = firstSong[currentLight].pwmSignal;
+			} else {
+				OCR3B = 0x00;
 			}
-			*/
 			
 			if (currentLight >= (sizeof(firstSong) / sizeof(firstSong[0])))
 			{

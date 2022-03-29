@@ -30,7 +30,7 @@ ISR ( TIMER0_COMP_vect )
 {
 	timerOverflow++;
 	
-	if (timerOverflow == 1500)
+	if (timerOverflow == 2000)
 	{
 		updateLight();
 		timerOverflow = 0;
