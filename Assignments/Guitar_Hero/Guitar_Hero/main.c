@@ -15,6 +15,7 @@
 
 #include "LCD_Module.h"
 #include "song_module.h"
+#include "UTS_Ultrasone.h"
 
 #define TRIGGER_PIN 0
 
@@ -45,11 +46,13 @@ int main(void)
 {
 	DDRF = 0xFF;
 	DDRB = 0x00;
+	DDRD = 0xFF;
 	
-	TIMSK = 0b01000010;
+	TIMSK |= 0b01000010;
 	
 	initTimer();
 	pwmInit();
+	UTS_Init();
 	
 	playFirstSong();
 	
