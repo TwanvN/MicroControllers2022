@@ -187,9 +187,9 @@ ISR ( TIMER0_COMP_vect )
  2c2:	90 93 47 01 	sts	0x0147, r25	; 0x800147 <timerOverflow+0x1>
  2c6:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <timerOverflow>
 	
-	if (timerOverflow == 1500)
- 2ca:	8c 3d       	cpi	r24, 0xDC	; 220
- 2cc:	95 40       	sbci	r25, 0x05	; 5
+	if (timerOverflow == 1000)
+ 2ca:	88 3e       	cpi	r24, 0xE8	; 232
+ 2cc:	93 40       	sbci	r25, 0x03	; 3
  2ce:	31 f4       	brne	.+12     	; 0x2dc <__vector_15+0x4a>
 	{
 		updateLight();
@@ -262,9 +262,9 @@ void pwmInit() {
  314:	82 e5       	ldi	r24, 0x52	; 82
  316:	80 93 8a 00 	sts	0x008A, r24	; 0x80008a <__TEXT_REGION_LENGTH__+0x7e008a>
 	
-	OCR3A = 100;
- 31a:	84 e6       	ldi	r24, 0x64	; 100
- 31c:	90 e0       	ldi	r25, 0x00	; 0
+	OCR3A = 1000;
+ 31a:	88 ee       	ldi	r24, 0xE8	; 232
+ 31c:	93 e0       	ldi	r25, 0x03	; 3
  31e:	90 93 87 00 	sts	0x0087, r25	; 0x800087 <__TEXT_REGION_LENGTH__+0x7e0087>
  322:	80 93 86 00 	sts	0x0086, r24	; 0x800086 <__TEXT_REGION_LENGTH__+0x7e0086>
 	OCR3B = 10;
@@ -348,9 +348,9 @@ void playFirstSong() {
 		
 		while(1) {
 			
-			if (PINB == 0b00010000 && firstSong[currentLight].lightID == 1)
+			if (PINB == 0b00000010 && firstSong[currentLight].lightID == 1)
  114:	86 b3       	in	r24, 0x16	; 22
- 116:	80 31       	cpi	r24, 0x10	; 16
+ 116:	82 30       	cpi	r24, 0x02	; 2
  118:	31 f5       	brne	.+76     	; 0x166 <playFirstSong+0x76>
  11a:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <currentLight>
  11e:	90 91 49 01 	lds	r25, 0x0149	; 0x800149 <currentLight+0x1>
@@ -388,9 +388,9 @@ void playFirstSong() {
  15c:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
  160:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
  164:	7f c0       	rjmp	.+254    	; 0x264 <playFirstSong+0x174>
-			} else if (PINB == 0b00000010 && firstSong[currentLight].lightID == 2)
+			} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 2)
  166:	86 b3       	in	r24, 0x16	; 22
- 168:	82 30       	cpi	r24, 0x02	; 2
+ 168:	84 30       	cpi	r24, 0x04	; 4
  16a:	31 f5       	brne	.+76     	; 0x1b8 <playFirstSong+0xc8>
  16c:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <currentLight>
  170:	90 91 49 01 	lds	r25, 0x0149	; 0x800149 <currentLight+0x1>
@@ -428,9 +428,9 @@ void playFirstSong() {
  1ae:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
  1b2:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
  1b6:	56 c0       	rjmp	.+172    	; 0x264 <playFirstSong+0x174>
-			} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 3)
+			} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 3)
  1b8:	86 b3       	in	r24, 0x16	; 22
- 1ba:	84 30       	cpi	r24, 0x04	; 4
+ 1ba:	88 30       	cpi	r24, 0x08	; 8
  1bc:	31 f5       	brne	.+76     	; 0x20a <playFirstSong+0x11a>
  1be:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <currentLight>
  1c2:	90 91 49 01 	lds	r25, 0x0149	; 0x800149 <currentLight+0x1>
@@ -468,9 +468,9 @@ void playFirstSong() {
  200:	90 93 85 00 	sts	0x0085, r25	; 0x800085 <__TEXT_REGION_LENGTH__+0x7e0085>
  204:	80 93 84 00 	sts	0x0084, r24	; 0x800084 <__TEXT_REGION_LENGTH__+0x7e0084>
  208:	2d c0       	rjmp	.+90     	; 0x264 <playFirstSong+0x174>
-			} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 4)
+			} else if (PINB == 0b00010000 && firstSong[currentLight].lightID == 4)
  20a:	86 b3       	in	r24, 0x16	; 22
- 20c:	88 30       	cpi	r24, 0x08	; 8
+ 20c:	80 31       	cpi	r24, 0x10	; 16
  20e:	31 f5       	brne	.+76     	; 0x25c <playFirstSong+0x16c>
  210:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <currentLight>
  214:	90 91 49 01 	lds	r25, 0x0149	; 0x800149 <currentLight+0x1>

@@ -30,7 +30,7 @@ ISR ( TIMER0_COMP_vect )
 {
 	timerOverflow++;
 	
-	if (timerOverflow == 2000)
+	if (timerOverflow == 1000)
 	{
 		updateLight();
 		timerOverflow = 0;
@@ -71,6 +71,6 @@ void pwmInit() {
 	TCCR3A = 0b00101001;
 	TCCR3B = 0b01010010;
 	
-	OCR3A = 100;
+	OCR3A = 1000;
 	OCR3B = 10;
 }

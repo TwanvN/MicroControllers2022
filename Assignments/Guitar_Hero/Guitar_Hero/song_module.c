@@ -20,11 +20,13 @@ typedef struct SongPattern {
 } SONG_PATTERN;
 
 SONG_PATTERN firstSong[10] = {
-	{1, 0b00010000, 1, 10},
-	{2, 0b00000010, 2, 20},
-	{3, 0b00000100, 3, 50},
-	{4, 0b00001000, 4, 60},
-	{5, 0b00000010, 2, 90}	
+	{1, 0b00000010, 1, 800},
+	{2, 0b00000100, 2, 1000},
+	{3, 0b00001000, 3, 800},
+	{4, 0b00010000, 4, 600},
+	{5, 0b00000100, 2, 400},
+	{5, 0b00001000, 3, 200},
+	{5, 0b00000100, 2, 100}	
 };
 
 int currentLight = 0;
@@ -39,16 +41,16 @@ void playFirstSong() {
 		
 		while(1) {
 			
-			if (PINB == 0b00010000 && firstSong[currentLight].lightID == 1)
+			if (PINB == 0b00000010 && firstSong[currentLight].lightID == 1)
 			{
 				OCR3B = firstSong[currentLight].pwmSignal;
-			} else if (PINB == 0b00000010 && firstSong[currentLight].lightID == 2)
+			} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 2)
 			{
 				OCR3B = firstSong[currentLight].pwmSignal;
-			} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 3)
+			} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 3)
 			{
 				OCR3B = firstSong[currentLight].pwmSignal;
-			} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 4)
+			} else if (PINB == 0b00010000 && firstSong[currentLight].lightID == 4)
 			{
 				OCR3B = firstSong[currentLight].pwmSignal;
 			} else {
