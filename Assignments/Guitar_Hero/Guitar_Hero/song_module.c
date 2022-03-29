@@ -9,6 +9,7 @@
 #include <util/delay.h>
 #include <avr/io.h>
 #include "song_module.h"
+#include "UTS_Ultrasone.h"
 
 typedef struct SongPattern {
 	int stepNumber;
@@ -35,16 +36,16 @@ void updateLight() {
 
 void playFirstSong() {
 		
-		if (PINB == 0b00000010 && firstSong[currentLight].lightID == 1)
+		if (PINB == 0b00000010 && firstSong[currentLight].lightID == 1 && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
-		} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 2)
+		} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 2 && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
-		} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 3)
+		} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 3 && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
-		} else if (PINB == 0b00010000 && firstSong[currentLight].lightID == 4)
+		} else if (PINB == 0b00010000 && firstSong[currentLight].lightID == 4 && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
 		} else {
