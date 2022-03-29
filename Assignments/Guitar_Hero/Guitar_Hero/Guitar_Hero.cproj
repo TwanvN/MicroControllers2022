@@ -116,10 +116,10 @@
     <Compile Include="main.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UTS_Ultrasone.c">
+    <Compile Include="song_module.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="UTS_Ultrasone.h">
+    <Compile Include="song_module.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>

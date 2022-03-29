@@ -39,7 +39,7 @@ SUBDIRS :=
 C_SRCS +=  \
 ../LCD_Module.c \
 ../main.c \
-../UTS_Ultrasone.c
+../song_module.c
 
 
 PREPROCESSING_SRCS += 
@@ -51,22 +51,22 @@ ASM_SRCS +=
 OBJS +=  \
 LCD_Module.o \
 main.o \
-UTS_Ultrasone.o
+song_module.o
 
 OBJS_AS_ARGS +=  \
 LCD_Module.o \
 main.o \
-UTS_Ultrasone.o
+song_module.o
 
 C_DEPS +=  \
 LCD_Module.d \
 main.d \
-UTS_Ultrasone.d
+song_module.d
 
 C_DEPS_AS_ARGS +=  \
 LCD_Module.d \
 main.d \
-UTS_Ultrasone.d
+song_module.d
 
 OUTPUT_FILE_PATH +=Guitar_Hero.elf
 
@@ -96,7 +96,7 @@ LINKER_SCRIPT_DEP+=
 	@echo Finished building: $<
 	
 
-./UTS_Ultrasone.o: .././UTS_Ultrasone.c
+./song_module.o: .././song_module.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.31
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.31\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega128  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega128__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

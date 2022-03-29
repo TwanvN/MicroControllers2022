@@ -4,7 +4,6 @@
  * Created: 3/10/2022 3:30:28 PM
  *  Author: Jesse
  */ 
-#define F_CPU 8e6
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -15,57 +14,37 @@
 #include <xc.h>
 
 #include "LCD_Module.h"
-#include "UTS_Ultrasone.h"
 #include "song_module.h"
 
 #define TRIGGER_PIN 0
 
 #define TICK_CM 58
+#define TICK_MS 250 
 
 int timerOverflow = 0;
+int seconds = 0;
 
 int timerRunning = 0;
 
-ISR ( INT7_vect )
+ISR ( TIMER0_COMP_vect )
 {
-	if (timerRunning == 0)
-	{
-		timerOverflow = 0; 
-		timerRunning = 1;
-	} 
-	else
-	{
-		timerRunning = 0;		
-	}
+	timerOverflow++;
 	
+	if (timerOverflow == 1000)
+	{
+		updateLight();
+		timerOverflow = 0;
+	}
 		
-}
-
-ISR ( TIMER2_COMP_vect )
-{
-	if (timerRunning)
-		timerOverflow++;
 }
 
 void initTimer();
+void pwmInit();
 
 int main(void)
 {
-	DDRB = 0x00;
 	DDRF = 0xFF;
-	DDRD = 0xFF;
-			
-	UTS_Init();
-					
-    while (1) {		
-		
-		UTS_Trigger();
-		
-		PORTD = currentDistance;
-		
-		
-	    _delay_ms( 250 );
-    }
+	DDRB = 0x00;
 	
 	TIMSK = 0b01000010;
 	

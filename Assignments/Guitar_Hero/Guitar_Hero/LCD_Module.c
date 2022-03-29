@@ -30,8 +30,10 @@ void lcd_strobe_lcd_e(void) {
  */
 void init_4bits_mode(void) {
 	// PORTC output mode and all low (also E and RS pin)
+	DDRA = 0xFF;
 	PORTC = 0x00;
 	PORTA = 0x00;
+	//PORTA = 0xFF;
 
 	// Step 2 (table 12)
 	PORTC = 0x20;	// function set
@@ -98,8 +100,8 @@ void LCD_init()
 {
 
 		// Setting DDRC to output, these are used in writing data to the LCD
-		DDRA = 0xFF;
 		DDRC = 0xFF;			
+		PORTC = 0xFF;
 		
 		// Setting the LCD to use the 4 bit mode
 		init_4bits_mode();
