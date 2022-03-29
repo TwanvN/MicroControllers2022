@@ -18,9 +18,9 @@
 #include "LCD_Module.h"
 
 #define TRIGGER_PIN 0
-#define ECHO_PIN 6
+#define ECHO_PIN 7
 
-#define TICK_CM 58
+#define TICK_CM 58.0
 
 int currentDistance = 0;
 
@@ -30,19 +30,19 @@ ISR ( INT7_vect )
 {	
 	PORTD = PINE;
 	
-	if( PINE == 0b10000000 )
-	{
+	if( PINE & (1 << ECHO_PIN) )
 		ticksOnTrigger = TCNT2;
-	}
+	
 	else
 	{
 		unsigned char diff = TCNT2 - ticksOnTrigger;	// Getting the difference
 		
-		currentDistance = ( diff * ( 32.0 / 58.0 ) );	// Setting DDRD to the value from the echo
+		currentDistance = ( diff * ( 32.0 / TICK_CM ) );	
 				
 		
 		ticksOnTrigger = 0; // resetting ticksOnTrigger
 	}
+	
 }
 
 ISR ( TIMER2_OVF_vect )
