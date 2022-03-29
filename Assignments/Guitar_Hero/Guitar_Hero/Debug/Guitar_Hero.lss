@@ -5,7 +5,7 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .data         00000000  00800100  00800100  000004de  2**0
                   ALLOC, LOAD, DATA
-  1 .text         000000ea  00000000  00000000  00000074  2**1
+  1 .text         000000f0  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .comment      0000002f  00000000  00000000  000004de  2**0
                   CONTENTS, READONLY
@@ -114,40 +114,40 @@ Disassembly of section .text:
   8e:	01 03       	mulsu	r16, r17
   90:	80 00       	.word	0x0080	; ????
 
-00000092 <__ctors_end>:
-  92:	11 24       	eor	r1, r1
-  94:	1f be       	out	0x3f, r1	; 63
-  96:	cf ef       	ldi	r28, 0xFF	; 255
-  98:	d0 e1       	ldi	r29, 0x10	; 16
-  9a:	de bf       	out	0x3e, r29	; 62
-  9c:	cd bf       	out	0x3d, r28	; 61
+00000098 <__ctors_end>:
+  98:	11 24       	eor	r1, r1
+  9a:	1f be       	out	0x3f, r1	; 63
+  9c:	cf ef       	ldi	r28, 0xFF	; 255
+  9e:	d0 e1       	ldi	r29, 0x10	; 16
+  a0:	de bf       	out	0x3e, r29	; 62
+  a2:	cd bf       	out	0x3d, r28	; 61
 
-0000009e <__do_copy_data>:
-  9e:	ec e8       	ldi	r30, 0x8C	; 140
-  a0:	f0 e0       	ldi	r31, 0x00	; 0
-  a2:	40 e0       	ldi	r20, 0x00	; 0
-  a4:	19 c0       	rjmp	.+50     	; 0xd8 <__do_clear_bss+0x8>
-  a6:	b7 91       	elpm	r27, Z+
-  a8:	a7 91       	elpm	r26, Z+
-  aa:	37 91       	elpm	r19, Z+
-  ac:	27 91       	elpm	r18, Z+
-  ae:	07 91       	elpm	r16, Z+
-  b0:	07 fd       	sbrc	r16, 7
-  b2:	0e c0       	rjmp	.+28     	; 0xd0 <__do_clear_bss>
-  b4:	97 91       	elpm	r25, Z+
-  b6:	87 91       	elpm	r24, Z+
-  b8:	ef 01       	movw	r28, r30
-  ba:	f9 2f       	mov	r31, r25
-  bc:	e8 2f       	mov	r30, r24
-  be:	0b bf       	out	0x3b, r16	; 59
-  c0:	07 90       	elpm	r0, Z+
-  c2:	0d 92       	st	X+, r0
-  c4:	a2 17       	cp	r26, r18
-  c6:	b3 07       	cpc	r27, r19
-  c8:	d9 f7       	brne	.-10     	; 0xc0 <__do_copy_data+0x22>
-  ca:	fe 01       	movw	r30, r28
-  cc:	1b be       	out	0x3b, r1	; 59
-  ce:	04 c0       	rjmp	.+8      	; 0xd8 <__do_clear_bss+0x8>
+000000a4 <__do_copy_data>:
+  a4:	ec e8       	ldi	r30, 0x8C	; 140
+  a6:	f0 e0       	ldi	r31, 0x00	; 0
+  a8:	40 e0       	ldi	r20, 0x00	; 0
+  aa:	19 c0       	rjmp	.+50     	; 0xde <__do_clear_bss+0x8>
+  ac:	b7 91       	elpm	r27, Z+
+  ae:	a7 91       	elpm	r26, Z+
+  b0:	37 91       	elpm	r19, Z+
+  b2:	27 91       	elpm	r18, Z+
+  b4:	07 91       	elpm	r16, Z+
+  b6:	07 fd       	sbrc	r16, 7
+  b8:	0e c0       	rjmp	.+28     	; 0xd6 <__do_clear_bss>
+  ba:	97 91       	elpm	r25, Z+
+  bc:	87 91       	elpm	r24, Z+
+  be:	ef 01       	movw	r28, r30
+  c0:	f9 2f       	mov	r31, r25
+  c2:	e8 2f       	mov	r30, r24
+  c4:	0b bf       	out	0x3b, r16	; 59
+  c6:	07 90       	elpm	r0, Z+
+  c8:	0d 92       	st	X+, r0
+  ca:	a2 17       	cp	r26, r18
+  cc:	b3 07       	cpc	r27, r19
+  ce:	d9 f7       	brne	.-10     	; 0xc6 <__do_copy_data+0x22>
+  d0:	fe 01       	movw	r30, r28
+  d2:	1b be       	out	0x3b, r1	; 59
+  d4:	04 c0       	rjmp	.+8      	; 0xde <__do_clear_bss+0x8>
 
 000000d0 <__do_clear_bss>:
   d0:	1d 92       	st	X+, r1
@@ -160,11 +160,11 @@ Disassembly of section .text:
   de:	0e 94 b0 01 	call	0x360	; 0x360 <main>
   e2:	0c 94 73 00 	jmp	0xe6	; 0xe6 <_exit>
 
-000000e6 <_exit>:
-  e6:	f8 94       	cli
+000000ec <_exit>:
+  ec:	f8 94       	cli
 
-000000e8 <__stop_program>:
-  e8:	ff cf       	rjmp	.-2      	; 0xe8 <__stop_program>
+000000ee <__stop_program>:
+  ee:	ff cf       	rjmp	.-2      	; 0xee <__stop_program>
 
 Disassembly of section .text:
 
