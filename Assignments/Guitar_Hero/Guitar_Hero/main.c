@@ -30,7 +30,7 @@ ISR ( TIMER0_COMP_vect )
 {
 	timerOverflow++;
 	
-	if (timerOverflow == 1000)
+	if (timerOverflow == 1500)
 	{
 		updateLight();
 		timerOverflow = 0;
@@ -39,6 +39,7 @@ ISR ( TIMER0_COMP_vect )
 }
 
 void initTimer();
+void pwmInit();
 
 int main(void)
 {
@@ -48,6 +49,7 @@ int main(void)
 	TIMSK = 0b01000010;
 	
 	initTimer();
+	pwmInit();
 	
 	playFirstSong();
 	
@@ -60,4 +62,15 @@ void initTimer()
 	TIMSK |= (1<<7);
 	TCCR0 = 0b00000011;
 	sei();
+}
+
+void pwmInit() {
+	DDRE = 0xFF;
+	TCNT3 = 0;
+	
+	TCCR3A = 0b00101001;
+	TCCR3B = 0b01010010;
+	
+	OCR3A = 100;
+	OCR3B = 10;
 }

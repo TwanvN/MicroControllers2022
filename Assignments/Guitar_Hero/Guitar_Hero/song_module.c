@@ -16,20 +16,22 @@ typedef struct SongPattern {
 	int stepNumber;
 	char lightSequence;
 	int lightID;
+	int pwmSignal;
 } SONG_PATTERN;
 
 SONG_PATTERN firstSong[10] = {
-	{1, 0b00010000, 1},
-	{2, 0b00000010, 2},
-	{3, 0b00000100, 3},
-	{4, 0b00001000, 4},
-	{5, 0b00001000, 2}	
+	{1, 0b00010000, 1, 10},
+	{2, 0b00000010, 2, 20},
+	{3, 0b00000100, 3, 50},
+	{4, 0b00001000, 4, 60},
+	{5, 0b00000010, 2, 90}	
 };
 
 int currentLight = 0;
 
 void updateLight() {
 	currentLight++;
+	OCR3B = firstSong[currentLight].pwmSignal;
 }
 
 void playFirstSong() {
