@@ -374,10 +374,10 @@ int main(void)
 Disassembly of section .text.updateLight:
 
 000005ba <updateLight>:
-};
 
-int currentLight = 0;
-
+/************************************************************************/
+/* Method which updates the current light                               */
+/************************************************************************/
 void updateLight() {
 	currentLight++;
  5ba:	80 91 2e 01 	lds	r24, 0x012E	; 0x80012e <currentLight>
@@ -390,10 +390,10 @@ void updateLight() {
 Disassembly of section .text.playFirstSong:
 
 000001c4 <playFirstSong>:
-}
-
+/* light and plays the corresponding frequency. If the button is		*/
+/* incorrect the buzzer won't play any frequency.						*/
+/************************************************************************/
 void playFirstSong() {
-		
 		
 		if (PINB == 0b00000001 << firstSong[currentLight].lightID && currentDistance < 20)
  1c4:	26 b3       	in	r18, 0x16	; 22
