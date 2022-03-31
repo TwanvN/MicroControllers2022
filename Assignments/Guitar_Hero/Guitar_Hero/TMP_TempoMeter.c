@@ -40,9 +40,7 @@ void TMP_meassure()
 	
 	// Update the last trigger
 	lastTrigerValue = currentDistance;
-	
-	//PORTD = numberOfTriggers;
-	
+		
 	// Call the trigger again for next round
 	UTS_Trigger();
 }

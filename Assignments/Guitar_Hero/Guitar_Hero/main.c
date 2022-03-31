@@ -63,7 +63,7 @@ int main(void)
 		{
 			TMP_meassure();
 			
-			DDRD = TMP_isPlaying();
+			PORTD = TMP_isPlaying();
 						
 			sensorTicks = timerOverflow;
 		}
@@ -84,12 +84,12 @@ void initTimer()
 }
 
 void pwmInit() {
-	DDRE = 0xFF;
+	DDRE = 0b0111111;
 	TCNT3 = 0;
 	
 	TCCR3A = 0b00101001;
 	TCCR3B = 0b01010010;
 	
 	OCR3A = 1000;
-	OCR3B = 10;
+	OCR3B = 0;
 }
