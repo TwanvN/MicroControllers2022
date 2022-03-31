@@ -12,20 +12,18 @@
 #include "UTS_Ultrasone.h"
 
 typedef struct SongPattern {
-	int stepNumber;
-	char lightSequence;
 	int lightID;
 	int pwmSignal;
 } SONG_PATTERN;
 
 SONG_PATTERN firstSong[10] = {
-	{1, 0b00000010, 1, 800},
-	{2, 0b00000100, 2, 1000},
-	{3, 0b00001000, 3, 800},
-	{4, 0b01000000, 4, 600},
-	{5, 0b00000100, 2, 400},
-	{5, 0b00001000, 3, 200},
-	{5, 0b00000100, 2, 100}	
+	{1, 800},
+	{2, 1000},
+	{3, 800},
+	{4, 600},
+	{2, 400},
+	{3, 200},
+	{2, 100}	
 };
 
 int currentLight = 0;
@@ -36,24 +34,6 @@ void updateLight() {
 
 void playFirstSong() {
 		
-		/*
-		if (PINB == 0b00000010 && firstSong[currentLight].lightID == 1 && currentDistance < 20)
-		{
-			OCR3B = firstSong[currentLight].pwmSignal;
-		} else if (PINB == 0b00000100 && firstSong[currentLight].lightID == 2 && currentDistance < 20)
-		{
-			OCR3B = firstSong[currentLight].pwmSignal;
-		} else if (PINB == 0b00001000 && firstSong[currentLight].lightID == 3 && currentDistance < 20)
-		{
-			OCR3B = firstSong[currentLight].pwmSignal;
-		} else if (PINB == 0b00010000 && firstSong[currentLight].lightID == 4 && currentDistance < 20)
-		{
-			OCR3B = firstSong[currentLight].pwmSignal;
-		} else {
-			OCR3B = 0x00;
-		}
-		*/
-		
 		if (PINB == 0b00000001 << firstSong[currentLight].lightID && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
@@ -63,7 +43,7 @@ void playFirstSong() {
 		
 		if (currentLight < (sizeof(firstSong) / sizeof(firstSong[0])))
 		{	
-			PORTF = firstSong[currentLight].lightSequence;
+			PORTF = 0b00000001 << firstSong[currentLight].lightID;
 		}
 		
 }
