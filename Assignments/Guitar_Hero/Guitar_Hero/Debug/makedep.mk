@@ -8,5 +8,7 @@ main.c
 
 song_module.c
 
+TMP_TempoMeter.c
+
 UTS_Ultrasone.c
 

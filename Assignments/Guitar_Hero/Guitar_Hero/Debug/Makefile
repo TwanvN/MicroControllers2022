@@ -40,6 +40,7 @@ C_SRCS +=  \
 ../LCD_Module.c \
 ../main.c \
 ../song_module.c \
+../TMP_TempoMeter.c \
 ../UTS_Ultrasone.c
 
 
@@ -53,24 +54,28 @@ OBJS +=  \
 LCD_Module.o \
 main.o \
 song_module.o \
+TMP_TempoMeter.o \
 UTS_Ultrasone.o
 
 OBJS_AS_ARGS +=  \
 LCD_Module.o \
 main.o \
 song_module.o \
+TMP_TempoMeter.o \
 UTS_Ultrasone.o
 
 C_DEPS +=  \
 LCD_Module.d \
 main.d \
 song_module.d \
+TMP_TempoMeter.d \
 UTS_Ultrasone.d
 
 C_DEPS_AS_ARGS +=  \
 LCD_Module.d \
 main.d \
 song_module.d \
+TMP_TempoMeter.d \
 UTS_Ultrasone.d
 
 OUTPUT_FILE_PATH +=Guitar_Hero.elf
@@ -102,6 +107,13 @@ LINKER_SCRIPT_DEP+=
 	
 
 ./song_module.o: .././song_module.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.31
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.31\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega128  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega128__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+./TMP_TempoMeter.o: .././TMP_TempoMeter.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.31
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.31\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega128  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega128__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

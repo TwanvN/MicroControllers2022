@@ -122,6 +122,12 @@
     <Compile Include="song_module.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="TMP_TempoMeter.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="TMP_TempoMeter.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="UTS_Ultrasone.c">
       <SubType>compile</SubType>
     </Compile>

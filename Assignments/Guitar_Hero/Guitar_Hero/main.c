@@ -16,9 +16,7 @@
 
 #include "LCD_Module.h"
 #include "song_module.h"
-#include "UTS_Ultrasone.h"
-
-#define TRIGGER_PIN 0
+#include "TMP_TempoMeter.h"
 
 #define TICK_CM 58
 #define TICK_MS 250 
@@ -31,17 +29,14 @@ int timerRunning = 0;
 ISR ( TIMER0_COMP_vect )
 {
 	timerOverflow++;
-	
-	if (timerOverflow == 1000)
-	{
-		updateLight();
-		timerOverflow = 0;
-	}
 		
 }
 
 void initTimer();
 void pwmInit();
+
+int updateTicks = 0;
+int sensorTicks = 0;
 
 int main(void)
 {
@@ -51,16 +46,26 @@ int main(void)
 	
 	initTimer();
 	pwmInit();
-	UTS_Init();
+	TMP_init_meassure();
 	
 	TIMSK = 0b01000010;
 	
 	while (1) {
 		
-		if(timerOverflow % 500 == 0)
+		if ( (timerOverflow - updateTicks) >= 1000 )
 		{
-			UTS_Trigger();
-			PORTD = currentDistance;
+			updateLight();
+			
+			updateTicks = timerOverflow;
+		}
+		
+		if( (timerOverflow - sensorTicks) >= 100)
+		{
+			TMP_meassure();
+			
+			DDRD = TMP_isPlaying();
+						
+			sensorTicks = timerOverflow;
 		}
 		
 		playFirstSong();
