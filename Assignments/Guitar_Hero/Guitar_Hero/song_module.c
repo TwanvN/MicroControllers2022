@@ -36,6 +36,7 @@ void updateLight() {
 
 void playFirstSong() {
 		
+		/*
 		if (PINB == 0b00000010 && firstSong[currentLight].lightID == 1 && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
@@ -46,6 +47,14 @@ void playFirstSong() {
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
 		} else if (PINB == 0b00010000 && firstSong[currentLight].lightID == 4 && currentDistance < 20)
+		{
+			OCR3B = firstSong[currentLight].pwmSignal;
+		} else {
+			OCR3B = 0x00;
+		}
+		*/
+		
+		if (PINB == 0b00000001 << firstSong[currentLight].lightID && currentDistance < 20)
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
 		} else {
