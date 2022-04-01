@@ -13,12 +13,17 @@
 
 #include "UTS_Ultrasone.h"
 
+// Defines
 #define HAND_TRIGGER_DISTANCE 32
 #define MISSED_TRIGGER_DELAY 5
 
-int lastTrigerValue = 0;
-int numberOfTriggers = 0;
+// Global values
+static int lastTrigerValue = 0;
+static int numberOfTriggers = 0;
 
+/************************************************************************/
+/* Sets all the registers for the tempo meter and ultrasone module      */
+/************************************************************************/
 void TMP_init_meassure()
 {
 	UTS_Init();
@@ -27,6 +32,10 @@ void TMP_init_meassure()
 	UTS_Trigger();
 }
 
+/************************************************************************/
+/* Sends one measure pulse to the UTS module							*/
+/* And measures the current tempo that is playing                       */
+/************************************************************************/
 void TMP_meassure()
 {
 	// Reading the value from the last trigger
@@ -45,6 +54,9 @@ void TMP_meassure()
 	UTS_Trigger();
 }
 
+/************************************************************************/
+/* Returns if the tempo is correct, the user is playing                 */
+/************************************************************************/
 int TMP_isPlaying()
 {
 	return numberOfTriggers < MISSED_TRIGGER_DELAY;

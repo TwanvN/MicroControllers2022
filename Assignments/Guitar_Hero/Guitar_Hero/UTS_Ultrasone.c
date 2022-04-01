@@ -17,8 +17,8 @@
 
 #define TICK_CM 58.0
 
-int currentDistance = 0;
-char ticksOnTrigger = 0;
+static int currentDistance = 0;
+static char ticksOnTrigger = 0;
 
 /************************************************************************/
 /* Starts the timer for counting distances                              */

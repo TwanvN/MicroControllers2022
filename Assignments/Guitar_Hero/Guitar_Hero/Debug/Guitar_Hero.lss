@@ -11,23 +11,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   3 .debug_aranges 000000d0  00000000  00000000  00000737  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   00001611  00000000  00000000  00000807  2**0
+  4 .debug_info   00001613  00000000  00000000  00000807  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000a0f  00000000  00000000  00001e18  2**0
+  5 .debug_abbrev 00000a33  00000000  00000000  00001e1a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   0000060a  00000000  00000000  00002827  2**0
+  6 .debug_line   0000060b  00000000  00000000  0000284d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  00000198  00000000  00000000  00002e34  2**2
+  7 .debug_frame  00000198  00000000  00000000  00002e58  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    000002d9  00000000  00000000  00002fcc  2**0
+  8 .debug_str    000002e7  00000000  00000000  00002ff0  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000182  00000000  00000000  000032a5  2**0
+  9 .debug_loc    00000182  00000000  00000000  000032d7  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000090  00000000  00000000  00003427  2**0
+ 10 .debug_ranges 00000090  00000000  00000000  00003459  2**0
                   CONTENTS, READONLY, DEBUGGING
  11 .text         00000004  00000648  00000648  000006dc  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
- 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000034b8  2**2
+ 12 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000034ec  2**2
                   CONTENTS, READONLY, DEBUGGING
  13 .text.__vector_15 0000002e  000004d8  000004d8  0000056c  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
@@ -202,7 +202,7 @@ Disassembly of section .text:
 Disassembly of section .text:
 
 00000648 <__bad_interrupt>:
- 648:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+ 648:	0c 94 00 00 	jmp	0	; 0x0 <__TEXT_REGION_ORIGIN__>
 
 Disassembly of section .text.__vector_15:
 
@@ -393,40 +393,39 @@ Disassembly of section .text.playFirstSong:
 /************************************************************************/
 void playFirstSong() {
 		
-		if (PINB == 0b00000001 << firstSong[currentLight].lightID && currentDistance < 20)
+		if (PINB == 0b00000001 << firstSong[currentLight].lightID && TMP_isPlaying())
  1c4:	26 b3       	in	r18, 0x16	; 22
  1c6:	30 e0       	ldi	r19, 0x00	; 0
- 1c8:	40 91 2e 01 	lds	r20, 0x012E	; 0x80012e <currentLight>
- 1cc:	50 91 2f 01 	lds	r21, 0x012F	; 0x80012f <currentLight+0x1>
- 1d0:	fa 01       	movw	r30, r20
- 1d2:	ee 0f       	add	r30, r30
- 1d4:	ff 1f       	adc	r31, r31
- 1d6:	ee 0f       	add	r30, r30
- 1d8:	ff 1f       	adc	r31, r31
- 1da:	e0 50       	subi	r30, 0x00	; 0
- 1dc:	ff 4f       	sbci	r31, 0xFF	; 255
- 1de:	81 e0       	ldi	r24, 0x01	; 1
- 1e0:	90 e0       	ldi	r25, 0x00	; 0
- 1e2:	00 80       	ld	r0, Z
- 1e4:	02 c0       	rjmp	.+4      	; 0x1ea <playFirstSong+0x26>
- 1e6:	88 0f       	add	r24, r24
- 1e8:	99 1f       	adc	r25, r25
- 1ea:	0a 94       	dec	r0
- 1ec:	e2 f7       	brpl	.-8      	; 0x1e6 <playFirstSong+0x22>
- 1ee:	28 17       	cp	r18, r24
- 1f0:	39 07       	cpc	r19, r25
- 1f2:	a1 f4       	brne	.+40     	; 0x21c <playFirstSong+0x58>
- 1f4:	80 91 34 01 	lds	r24, 0x0134	; 0x800134 <currentDistance>
- 1f8:	90 91 35 01 	lds	r25, 0x0135	; 0x800135 <currentDistance+0x1>
- 1fc:	44 97       	sbiw	r24, 0x14	; 20
- 1fe:	74 f4       	brge	.+28     	; 0x21c <playFirstSong+0x58>
+ 1c8:	e0 91 2e 01 	lds	r30, 0x012E	; 0x80012e <currentLight>
+ 1cc:	f0 91 2f 01 	lds	r31, 0x012F	; 0x80012f <currentLight+0x1>
+ 1d0:	ee 0f       	add	r30, r30
+ 1d2:	ff 1f       	adc	r31, r31
+ 1d4:	ee 0f       	add	r30, r30
+ 1d6:	ff 1f       	adc	r31, r31
+ 1d8:	e0 50       	subi	r30, 0x00	; 0
+ 1da:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1dc:	81 e0       	ldi	r24, 0x01	; 1
+ 1de:	90 e0       	ldi	r25, 0x00	; 0
+ 1e0:	00 80       	ld	r0, Z
+ 1e2:	02 c0       	rjmp	.+4      	; 0x1e8 <playFirstSong+0x24>
+ 1e4:	88 0f       	add	r24, r24
+ 1e6:	99 1f       	adc	r25, r25
+ 1e8:	0a 94       	dec	r0
+ 1ea:	e2 f7       	brpl	.-8      	; 0x1e4 <playFirstSong+0x20>
+ 1ec:	28 17       	cp	r18, r24
+ 1ee:	39 07       	cpc	r19, r25
+ 1f0:	a9 f4       	brne	.+42     	; 0x21c <playFirstSong+0x58>
+ 1f2:	0e 94 ba 02 	call	0x574	; 0x574 <TMP_isPlaying>
+ 1f6:	89 2b       	or	r24, r25
+ 1f8:	89 f0       	breq	.+34     	; 0x21c <playFirstSong+0x58>
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
- 200:	44 0f       	add	r20, r20
- 202:	55 1f       	adc	r21, r21
- 204:	44 0f       	add	r20, r20
- 206:	55 1f       	adc	r21, r21
- 208:	fa 01       	movw	r30, r20
+ 1fa:	e0 91 2e 01 	lds	r30, 0x012E	; 0x80012e <currentLight>
+ 1fe:	f0 91 2f 01 	lds	r31, 0x012F	; 0x80012f <currentLight+0x1>
+ 202:	ee 0f       	add	r30, r30
+ 204:	ff 1f       	adc	r31, r31
+ 206:	ee 0f       	add	r30, r30
+ 208:	ff 1f       	adc	r31, r31
  20a:	e0 50       	subi	r30, 0x00	; 0
  20c:	ff 4f       	sbci	r31, 0xFF	; 255
  20e:	82 81       	ldd	r24, Z+2	; 0x02
@@ -922,7 +921,7 @@ Disassembly of section .text.avrlibc.fplib:
 Disassembly of section .text.avrlibc.fplib:
 
 0000063a <__mulsf3>:
- 63a:	0e 94 78 00 	call	0xf0	; 0xf0 <_etext>
+ 63a:	0e 94 78 00 	call	0xf0	; 0xf0 <__data_load_end>
  63e:	0c 94 9a 02 	jmp	0x534	; 0x534 <__fp_round>
 
 Disassembly of section .text.avrlibc.fplib:

@@ -9,7 +9,7 @@
 #include <util/delay.h>
 #include <avr/io.h>
 #include "song_module.h"
-#include "UTS_Ultrasone.h"
+#include "TMP_TempoMeter.h"
 
 /************************************************************************/
 /* Struct which contains 2 variables for the light to light up and the  */
@@ -53,7 +53,7 @@ void updateLight() {
 /************************************************************************/
 void playFirstSong() {
 		
-		if (PINB == 0b00000001 << firstSong[currentLight].lightID && currentDistance < 20)
+		if (PINB == 0b00000001 << firstSong[currentLight].lightID && TMP_isPlaying())
 		{
 			OCR3B = firstSong[currentLight].pwmSignal;
 		} else {
