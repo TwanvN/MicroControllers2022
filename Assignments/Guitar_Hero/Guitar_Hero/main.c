@@ -18,6 +18,7 @@
 #include "song_module.h"
 #include "TMP_TempoMeter.h"
 
+// Defines
 #define TICK_CM 58
 #define TICK_MS 250 
 
@@ -26,49 +27,56 @@ int seconds = 0;
 
 int timerRunning = 0;
 
-ISR ( TIMER0_COMP_vect )
-{
-	timerOverflow++;
-		
-}
-
 void initTimer();
 void pwmInit();
 
 int updateTicks = 0;
 int sensorTicks = 0;
 
+/************************************************************************/
+/* Timer 0 compare, increment value                                    */
+/************************************************************************/
+ISR ( TIMER0_COMP_vect )
+{
+	timerOverflow++;
+}
+
+/************************************************************************/
+/* Main                                                                 */
+/************************************************************************/
 int main(void)
 {
+	// DDRF and DDRD to full output
 	DDRF = 0xFF;
-	DDRB = 0x00;
 	DDRD = 0xFF;
 	
+	// DDRB to full input
+	DDRB = 0x00;
+	
+	// Call the starting methods
 	initTimer();
 	pwmInit();
 	TMP_init_meassure();
 	
-	TIMSK = 0b01000010;
-	
 	while (1) {
 		
-		if ( (timerOverflow - updateTicks) >= 1000 )
+		if ( (timerOverflow - updateTicks) >= 1000 )// Polling if 1000 millis have passed
 		{
-			updateLight();
+			updateLight();							// Switch to next light
 			
-			updateTicks = timerOverflow;
+			updateTicks = timerOverflow;			// Updating the last poll
 		}
 		
-		if( (timerOverflow - sensorTicks) >= 100)
+		if( (timerOverflow - sensorTicks) >= 100)	// Polling if 100 millis have passed
 		{
 			TMP_meassure();
 			
-			PORTD = TMP_isPlaying();
+			PORTD = TMP_isPlaying();				// Showing tempo playing bool to PORTD
 						
-			sensorTicks = timerOverflow;
+			sensorTicks = timerOverflow;			// Updating the last poll
 		}
 		
-		playFirstSong();
+		playFirstSong();							// Polling the buttons
 		
 	}
 		
@@ -77,10 +85,13 @@ int main(void)
 
 void initTimer()
 {
-	OCR0 = TICK_MS;
-	TIMSK |= (1<<7);
-	TCCR0 = 0b00000011;
-	sei();
+	// Updating the second bit (Compare interrupt timer 0 enabled)
+	TIMSK |= 0b00000010;
+	
+	OCR0 = TICK_MS;			// Compare on 1ms
+	TIMSK |= (1<<7);		// niet nodig?
+	TCCR0 = 0b00000011;		// Set timer 0 to pre-scaler 32
+	sei();					// Start interrupts
 }
 
 void pwmInit() {
