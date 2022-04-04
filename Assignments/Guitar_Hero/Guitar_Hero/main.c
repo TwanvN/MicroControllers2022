@@ -19,7 +19,6 @@
 #include "TMP_TempoMeter.h"
 
 // Defines
-#define TICK_CM 58
 #define TICK_MS 250 
 
 int timerOverflow = 0;
