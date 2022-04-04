@@ -94,12 +94,12 @@ void initTimer()
 }
 
 void pwmInit() {
-	DDRE = 0b0111111;
+	DDRE = 0b0111111;		//Setting port E to output, except for E7
 	TCNT3 = 0;
 	
-	TCCR3A = 0b00101001;
-	TCCR3B = 0b01010010;
+	TCCR3A = 0b00100001;	//Setting channel B on compare match
+	TCCR3B = 0b01010010;	//Setting rising edge, waveform-generation and pre-scaler of 8
 	
-	OCR3A = 1000;
-	OCR3B = 0;
+	OCR3A = 1000;			//The time where timer rises, or falls
+	OCR3B = 0;				//Setting compare value for timer
 }
