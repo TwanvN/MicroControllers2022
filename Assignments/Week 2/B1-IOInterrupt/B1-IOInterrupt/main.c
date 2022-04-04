@@ -13,7 +13,7 @@
 **					or type 'make'
 ** Author: 			dkroeske@gmail.com
 **
-** Code has been copied from Etiënne Goossens from GitHub
+** Code has been copied from Etiï¿½nne Goossens from GitHub
 ** -------------------------------------------------------------------------*/
 
 #define F_CPU 8e6

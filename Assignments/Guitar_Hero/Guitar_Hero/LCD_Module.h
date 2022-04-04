@@ -8,7 +8,7 @@
 
 
 #ifndef LCD_H_
-#define LCD_H_	
+#define LCD_H_
 
 	/*
 	* Sets the lcd display to the correct 4 pin mode. Also clears the display before starting

@@ -1,17 +1,22 @@
 
+#define F_CPU 8e6
+
+#include "LCD.h"
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-#include "LCD.h"
 
 // Main method to test the display module
 int main() {
-	
-	_delay_ms(500);
-	
+		
+	_delay_ms(500);	
+		
 	// Starting up the LCD display
 	LCD_init();
+	
+	_delay_ms(1500);
 	
 	// Writing a test string to the first line
 	char string[] = "test 123 Twan";

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 <project>                                  
-  <executable name="B5-LCD-module.elf">                 
+  <executable name="Guitar_Hero.elf">                 
     <memory name="program">              
       <units>bytes</units>                 
       <length>131072</length>                 
-      <used>635</used>                     
-      <free>130437</free>                     
+      <used>1654</used>                     
+      <free>129418</free>                     
     </memory>                              
     <memory name="data">                 
       <units>bytes</units>                 
       <length>4096</length>                 
-      <used>0</used>                     
-      <free>4096</free>                     
+      <used>55</used>                     
+      <free>4041</free>                     
     </memory>                              
   </executable>                            
 </project>                                 
