@@ -55,14 +55,14 @@ void playFirstSong() {
 		
 		if (PINB == 0b00000001 << firstSong[currentLight].lightID && TMP_isPlaying())
 		{
-			OCR3B = firstSong[currentLight].pwmSignal;
+			OCR3B = firstSong[currentLight].pwmSignal; //Setting compare value to the value corresponding with the current step
 		} else {
-			OCR3B = 0x00;
+			OCR3B = 0x00; //Silencing the buzzer
 		}
 		
 		if (currentLight < (sizeof(firstSong) / sizeof(firstSong[0])))
 		{	
-			PORTF = 0b00000001 << firstSong[currentLight].lightID;
+			PORTF = 0b00000001 << firstSong[currentLight].lightID; //Updating port F
 		}
 		
 }
